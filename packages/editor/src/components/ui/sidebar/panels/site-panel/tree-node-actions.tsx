@@ -67,7 +67,7 @@ export const TreeNodeActions = memo(function TreeNodeActions({ nodeId }: TreeNod
           <button
             className="relative flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground dark:hover:bg-white/10"
             onClick={(e) => e.stopPropagation()}
-            title="Camera snapshot"
+            title="Vista guardada"
           >
             <Camera className="h-3 w-3" />
             {hasCamera && (
@@ -88,7 +88,7 @@ export const TreeNodeActions = memo(function TreeNodeActions({ nodeId }: TreeNod
                 onClick={handleViewCamera}
               >
                 <Camera className="h-3.5 w-3.5" />
-                View snapshot
+                Ver vista guardada
               </button>
             )}
             <button
@@ -104,7 +104,7 @@ export const TreeNodeActions = memo(function TreeNodeActions({ nodeId }: TreeNod
                 onClick={handleClearCamera}
               >
                 <Trash2 className="h-3.5 w-3.5" />
-                Clear snapshot
+                Borrar vista guardada
               </button>
             )}
           </div>

@@ -69,7 +69,7 @@ export function LevelDuplicateDialog({
     <Dialog onOpenChange={onOpenChange} open={open}>
       <DialogContent className="sm:max-w-md" showCloseButton={false}>
         <DialogHeader>
-          <DialogTitle>Duplicate Level</DialogTitle>
+          <DialogTitle>Duplicar nivel</DialogTitle>
           <DialogDescription>Choose what to copy from {getLevelLabel(level)}.</DialogDescription>
         </DialogHeader>
 
@@ -98,14 +98,14 @@ export function LevelDuplicateDialog({
             onClick={() => onOpenChange(false)}
             type="button"
           >
-            Cancel
+            Cancelar
           </button>
           <button
             className="cursor-pointer rounded-md bg-primary px-4 py-2 text-primary-foreground text-sm transition-opacity hover:opacity-90"
             onClick={() => onConfirm(preset)}
             type="button"
           >
-            Duplicate
+            Duplicar
           </button>
         </DialogFooter>
       </DialogContent>

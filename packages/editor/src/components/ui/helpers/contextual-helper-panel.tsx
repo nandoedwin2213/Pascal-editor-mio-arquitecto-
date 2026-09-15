@@ -196,7 +196,7 @@ function SnappingChips({ context }: { context: SnapContext }) {
           sfxEmitter.emit('sfx:grid-snap')
         }}
         shortcut="Shift"
-        tooltip="Snapping mode — click or press Shift to cycle"
+        tooltip="Modo de ajuste — clic o Shift para alternar"
       />
       {gridActive ? (
         <ChipRow
@@ -208,7 +208,7 @@ function SnappingChips({ context }: { context: SnapContext }) {
             sfxEmitter.emit('sfx:grid-snap')
           }}
           shortcut="Ctrl"
-          tooltip="Grid step — click or tap Ctrl to cycle"
+          tooltip="Paso de la cuadrícula — clic o Ctrl para alternar"
         />
       ) : null}
     </>
@@ -249,7 +249,7 @@ function ContinuationChip({ context }: { context: ContinuationContext }) {
       label={label}
       onClick={() => cycleContinuation(context)}
       shortcut="C"
-      tooltip="Continuation — click or press C to cycle"
+      tooltip="Continuación — clic o C para alternar"
     />
   )
 }
@@ -274,7 +274,7 @@ function FenceContinuationChips() {
         label={typeLabel}
         onClick={() => setContinuation('fence', isCurved ? 'continuous' : 'curved')}
         shortcut="T"
-        tooltip="Fence type — click or press T to switch between straight and curved"
+        tooltip="Tipo de cerca — clic o T para alternar entre recta y curva"
       />
       <ChipRow
         ariaLabel={`Fence continuation: ${straightLabel}`}
@@ -299,7 +299,7 @@ function FenceContinuationChips() {
       {isCurved && curveStarted ? (
         <ChipRow
           icon="lucide:circle-check"
-          label="Finish curve (or double-click)"
+          label="Terminar curva (o doble clic)"
           shortcut="Enter"
         />
       ) : null}
@@ -329,13 +329,13 @@ function PaintScopeChip() {
   // Nothing to paint with yet (no material picked, not erasing) → the first step
   // is choosing a material, so say that before anything about scope or hovering.
   if (!(paintEraser || hasActivePaintMaterial(activePaintMaterial))) {
-    return <ChipRow icon="lucide:palette" label="Select a material to paint" />
+    return <ChipRow icon="lucide:palette" label="Elige un material para pintar" />
   }
 
   // Not over anything paintable → guide the user to hover, still teaching Shift.
   if (!paintHover) {
     return (
-      <ChipRow icon="lucide:mouse-pointer-click" label="Hover a surface to paint" shortcut="Shift" />
+      <ChipRow icon="lucide:mouse-pointer-click" label="Pasa el cursor por una superficie para pintar" shortcut="Shift" />
     )
   }
 
@@ -362,7 +362,7 @@ function PaintScopeChip() {
       label={`Paint: ${paintScopeLabel(effective, paintHover)}`}
       onClick={() => cyclePaintScope()}
       shortcut="Shift"
-      tooltip="Paint scope — click or press Shift to cycle"
+      tooltip="Alcance de pintura — clic o Shift para alternar"
     />
   )
 }

@@ -242,7 +242,7 @@ function LegacyItemsPanel({
               setSearch(e.target.value)
               onSearchChange?.(e.target.value)
             }}
-            placeholder="Search..."
+            placeholder="Buscar…"
             type="text"
             value={search}
           />
@@ -284,7 +284,7 @@ function LegacyItemsPanel({
                   onClick={() => setActivePlacementTag(null)}
                   type="button"
                 >
-                  All
+                  Todo
                 </button>
                 {placementTags.map((tag) => {
                   const count = placementCount(tag)

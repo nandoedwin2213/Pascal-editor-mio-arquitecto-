@@ -97,7 +97,7 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
           variant={paintEraser ? 'default' : 'outline'}
         >
           <Eraser />
-          Erase
+          Borrar
         </Button>
         <Button
           className="flex-1"
@@ -107,7 +107,7 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
           variant="outline"
         >
           <RotateCcw />
-          Reset all
+          Restablecer todo
         </Button>
       </div>
 
@@ -128,12 +128,12 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
       <div className="mt-2 shrink-0 space-y-1.5 border-border/60 border-t pt-2">
         <div className="flex items-center justify-between">
           <span className="font-medium text-muted-foreground text-xs uppercase tracking-[0.12em]">
-            Scene materials
+            Materiales de la escena
           </span>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                aria-label="Add material"
+                aria-label="Agregar material"
                 onClick={createCustomMaterial}
                 size="icon-sm"
                 type="button"
@@ -142,7 +142,7 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
                 <Plus />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Add material</TooltipContent>
+            <TooltipContent>Agregar material</TooltipContent>
           </Tooltip>
         </div>
         <div className="subtle-scrollbar max-h-56 overflow-y-auto">
@@ -150,7 +150,7 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
             <SceneMaterialList autoEditId={autoEditMaterialId} />
           ) : (
             <p className="px-0.5 py-1 text-muted-foreground text-xs">
-              No custom materials yet — add one with +.
+              Aún no hay materiales propios: agrega uno con +.
             </p>
           )}
         </div>

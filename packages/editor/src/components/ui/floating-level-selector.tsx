@@ -198,7 +198,7 @@ function LevelRow({
               dragHandleProps?.onClick?.(e)
             }}
             ref={dragHandleRef}
-            title="Drag to reorder"
+            title="Arrastra para reordenar"
             type="button"
           >
             <GripVertical className="h-3.5 w-3.5" />
@@ -223,7 +223,7 @@ function LevelRow({
               <button
                 className="mr-0.5 shrink-0 whitespace-nowrap rounded px-1 py-0.5 font-mono text-[10px] text-muted-foreground/50 tabular-nums transition-colors hover:bg-white/5 hover:text-foreground"
                 onClick={(e) => e.stopPropagation()}
-                title="Level height"
+                title="Altura del nivel"
                 type="button"
               >
                 {storeyHeightLabel}
@@ -237,7 +237,7 @@ function LevelRow({
               sideOffset={8}
             >
               <SliderControl
-                label="Level height"
+                label="Altura del nivel"
                 max={20}
                 min={1}
                 onChange={(v) => updateNode(level.id, { height: v })}
@@ -280,7 +280,7 @@ function LevelRow({
                 type="button"
               >
                 <Copy className="h-3 w-3" />
-                Duplicate level
+                Duplicar nivel
               </button>
               <button
                 className="flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-muted-foreground text-xs transition-colors hover:bg-white/10 hover:text-foreground"
@@ -291,7 +291,7 @@ function LevelRow({
                 type="button"
               >
                 <Copy className="h-3 w-3" />
-                Duplicate with options...
+                Duplicar con opciones…
               </button>
               {onPaste && (
                 <button
@@ -303,7 +303,7 @@ function LevelRow({
                   type="button"
                 >
                   <ClipboardPaste className="h-3 w-3" />
-                  Paste copied selection
+                  Pegar la selección copiada
                 </button>
               )}
               <button
@@ -317,7 +317,7 @@ function LevelRow({
                 type="button"
               >
                 <Trash2 className="h-3 w-3" />
-                Delete level
+                Eliminar nivel
               </button>
             </PopoverContent>
           </Popover>
@@ -581,7 +581,7 @@ export function FloatingLevelSelector() {
               // read only from outside: nothing here depends on it.
               data-guide-target="level-add"
               onClick={handleAddAbove}
-              title="Add level above"
+              title="Agregar nivel encima"
               type="button"
             >
               <Plus className="h-2.5 w-2.5" />
@@ -593,7 +593,7 @@ export function FloatingLevelSelector() {
             <button
               className={cn(addButtonClass, 'bottom-0 translate-y-1/2')}
               onClick={handleAddBelow}
-              title="Add level below"
+              title="Agregar nivel debajo"
               type="button"
             >
               <Plus className="h-2.5 w-2.5" />
@@ -645,7 +645,7 @@ export function FloatingLevelSelector() {
                         <button
                           className={cn(addButtonClass, 'bottom-0 translate-y-1/2')}
                           onClick={() => handleInsertBetween(sortedIndex - 1)}
-                          title="Insert level here"
+                          title="Insertar nivel aquí"
                           type="button"
                         >
                           <Plus className="h-2.5 w-2.5" />
@@ -664,7 +664,7 @@ export function FloatingLevelSelector() {
       <Dialog onOpenChange={(open) => !open && setDeletingLevel(null)} open={!!deletingLevel}>
         <DialogContent showCloseButton={false}>
           <DialogHeader>
-            <DialogTitle>Delete level</DialogTitle>
+            <DialogTitle>Eliminar nivel</DialogTitle>
             <DialogDescription>
               Are you sure you want to delete{' '}
               <strong>{deletingLevel ? getLevelDisplayName(deletingLevel) : ''}</strong>? All
@@ -677,14 +677,14 @@ export function FloatingLevelSelector() {
               onClick={() => setDeletingLevel(null)}
               type="button"
             >
-              Cancel
+              Cancelar
             </button>
             <button
               className="rounded-full bg-red-600 px-4 py-2 text-sm text-white transition-colors hover:bg-red-700"
               onClick={handleConfirmDelete}
               type="button"
             >
-              Delete
+              Eliminar
             </button>
           </DialogFooter>
         </DialogContent>

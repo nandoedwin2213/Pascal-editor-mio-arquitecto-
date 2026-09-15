@@ -57,7 +57,7 @@ export function MobileSelectionBar({
 
       <div className="flex items-center gap-0.5 border-border/40 border-l pl-1">
         <button
-          aria-label="Move"
+          aria-label="Mover"
           className={ACTION_BTN}
           onClick={(e) => {
             stop(e)
@@ -68,7 +68,7 @@ export function MobileSelectionBar({
           <Move className="h-4 w-4" />
         </button>
         <button
-          aria-label="Duplicate"
+          aria-label="Duplicar"
           className={ACTION_BTN}
           onClick={(e) => {
             stop(e)
@@ -79,7 +79,7 @@ export function MobileSelectionBar({
           <Copy className="h-4 w-4" />
         </button>
         <button
-          aria-label="Delete"
+          aria-label="Eliminar"
           className={cn(ACTION_BTN, 'hover:bg-red-500/15 hover:text-red-400')}
           onClick={(e) => {
             stop(e)
@@ -90,7 +90,7 @@ export function MobileSelectionBar({
           <Trash2 className="h-4 w-4" />
         </button>
         <button
-          aria-label="Edit properties"
+          aria-label="Editar propiedades"
           className={ACTION_BTN}
           onClick={(e) => {
             stop(e)

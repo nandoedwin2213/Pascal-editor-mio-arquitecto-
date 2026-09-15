@@ -37,28 +37,28 @@ export function MultiSelectionActions() {
       {showGroup && (
         <ActionButton
           icon={<Group className="h-4 w-4" />}
-          label="Group"
+          label="Agrupar"
           onClick={() => groupCurrentSelection()}
-          title="Group (Ctrl/Cmd+G)"
+          title="Agrupar (Ctrl/Cmd+G)"
         />
       )}
       {showUngroup && (
         <ActionButton
           icon={<Ungroup className="h-4 w-4" />}
-          label="Ungroup"
+          label="Desagrupar"
           onClick={() => ungroupCurrentSelection()}
-          title="Ungroup (Ctrl/Cmd+Shift+G)"
+          title="Desagrupar (Ctrl/Cmd+Shift+G)"
         />
       )}
       <ActionButton
         icon={<Copy className="h-4 w-4" />}
-        label="Duplicate"
+        label="Duplicar"
         onClick={() => duplicateSelectionAndPickUp()}
       />
       <ActionButton
         className="border-red-500/40 text-red-200 hover:bg-red-500/15"
         icon={<Trash2 className="h-4 w-4 text-red-400" />}
-        label="Delete"
+        label="Eliminar"
         onClick={() => deleteSelection()}
       />
     </ActionGroup>

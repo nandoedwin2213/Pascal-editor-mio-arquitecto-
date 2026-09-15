@@ -58,7 +58,7 @@ function PluginPanelCrashed({ label }: { label: string }) {
     <div className="flex flex-col gap-2 p-4 text-sm">
       <p className="font-medium text-sidebar-foreground">"{label}" plugin crashed</p>
       <p className="text-sidebar-foreground/50 text-xs">
-        This panel hit an error and was unloaded for this session. The rest of the editor is
+        Este panel tuvo un error y se descargó por esta sesión. El resto del editor sigue
         unaffected — reload to try again.
       </p>
     </div>

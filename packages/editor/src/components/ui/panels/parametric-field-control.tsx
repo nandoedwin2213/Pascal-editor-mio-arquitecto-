@@ -88,7 +88,7 @@ export function ParametricFieldControl({
           >
             {mixed && (
               <option disabled value="">
-                Mixed
+                Variado
               </option>
             )}
             {field.options.map((opt) => (

@@ -881,7 +881,7 @@ export function FloorplanPreview({
         className={className}
         style={{ display: 'grid', placeItems: 'center', background: '#f8fafc', color: '#64748b' }}
       >
-        No floor plans are available for this scene.
+        Esta escena no tiene planos disponibles.
       </div>
     )
   }
@@ -981,9 +981,9 @@ export function FloorplanPreview({
             fontWeight: 600,
           }}
         >
-          Floor
+          Nivel
           <select
-            aria-label="Floor"
+            aria-label="Nivel"
             onChange={(event) => chooseLevel(event.target.value)}
             style={{
               border: '1px solid rgba(148,163,184,.55)',
@@ -1025,28 +1025,28 @@ export function FloorplanPreview({
         }}
       >
         <button
-          aria-label="Zoom out"
+          aria-label="Alejar"
           onClick={() => zoom(1.2)}
           style={controlStyle}
-          title="Zoom out"
+          title="Alejar"
           type="button"
         >
           <Minus size={16} />
         </button>
         <button
-          aria-label="Fit floor plan"
+          aria-label="Ajustar el plano"
           onClick={() => updateLocalViewBox(fittedViewBox)}
           style={controlStyle}
-          title="Fit floor plan"
+          title="Ajustar el plano"
           type="button"
         >
           <Maximize2 size={15} />
         </button>
         <button
-          aria-label="Zoom in"
+          aria-label="Acercar"
           onClick={() => zoom(0.8)}
           style={controlStyle}
-          title="Zoom in"
+          title="Acercar"
           type="button"
         >
           <Plus size={16} />

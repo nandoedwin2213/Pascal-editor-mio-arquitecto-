@@ -92,7 +92,7 @@ export function TerrainSculptPanel() {
           under it lands between samples and paints nothing at all.
         */}
         <SliderControl
-          label="Size"
+          label="Tamaño"
           max={maxRadius}
           min={minRadius}
           onChange={(radius) => setTerrainBrush({ radius })}
@@ -102,7 +102,7 @@ export function TerrainSculptPanel() {
           value={brush.radius}
         />
         <SliderControl
-          label="Strength"
+          label="Intensidad"
           max={1}
           min={0.05}
           onChange={(strength) => setTerrainBrush({ strength })}
@@ -111,7 +111,7 @@ export function TerrainSculptPanel() {
           value={brush.strength}
         />
         <SliderControl
-          label="Softness"
+          label="Suavidad"
           max={1}
           min={0}
           onChange={(falloff) => setTerrainBrush({ falloff })}
@@ -134,7 +134,7 @@ export function TerrainSculptPanel() {
           <div className="flex items-center gap-2">
             <div className="min-w-0 flex-1">
               <SliderControl
-                label="Target"
+                label="Altura objetivo"
                 max={50}
                 min={-50}
                 onChange={setTerrainFlattenTarget}
@@ -145,7 +145,7 @@ export function TerrainSculptPanel() {
               />
             </div>
             <Button
-              aria-label="Pick target height from the ground"
+              aria-label="Tomar la altura objetivo del terreno"
               aria-pressed={sampling}
               onClick={() => setTerrainSampling(!sampling)}
               size="icon-sm"
@@ -175,7 +175,7 @@ export function TerrainSculptPanel() {
           variant="outline"
         >
           <Mountain />
-          Level lot
+          Nivelar lote
         </Button>
         <Button
           className="flex-1"
@@ -185,7 +185,7 @@ export function TerrainSculptPanel() {
           type="button"
           variant="outline"
         >
-          Clear terrain
+          Limpiar terreno
         </Button>
       </div>
     </div>

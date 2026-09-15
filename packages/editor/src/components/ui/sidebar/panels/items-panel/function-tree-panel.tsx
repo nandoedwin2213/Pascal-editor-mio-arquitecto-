@@ -178,7 +178,7 @@ export function FunctionTreePanel({
               setSearch(e.target.value)
               onSearchChange?.(e.target.value)
             }}
-            placeholder="Search..."
+            placeholder="Buscar…"
             type="text"
             value={search}
           />
@@ -217,7 +217,7 @@ export function FunctionTreePanel({
               onClick={() => setActiveChildSlug(null)}
               type="button"
             >
-              All
+              Todo
             </button>
             {activeRoot.children.map((child) => {
               const isActive = activeChildSlug === child.slug

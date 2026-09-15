@@ -151,7 +151,7 @@ export function MultiHeightModeField({
     <>
       {nodeType === 'wall' && (
         <div className="px-1 font-medium text-[10px] text-muted-foreground/80 uppercase tracking-wider">
-          Top
+          Superior
         </div>
       )}
       <SegmentedControl
@@ -167,7 +167,7 @@ export function MultiHeightModeField({
         <div className="px-1 text-[11px] text-muted-foreground">Currently {currentLabel}</div>
       ) : isCustom ? (
         <SliderControl
-          label="Height"
+          label="Altura"
           max={max}
           min={min}
           mixed={sliderMixed}

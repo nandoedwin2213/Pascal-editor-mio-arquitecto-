@@ -66,11 +66,11 @@ export function FloorplanModeCoordinator() {
           }}
           type="button"
         >
-          Switch to Expert
+          Cambiar a modo experto
         </button>
       ) : null}
       <button
-        aria-label="Dismiss"
+        aria-label="Descartar"
         className="shrink-0 rounded p-1 text-muted-foreground hover:bg-white/10 hover:text-foreground"
         onClick={dismissNotice}
         type="button"

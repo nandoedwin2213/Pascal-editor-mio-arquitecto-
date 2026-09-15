@@ -1798,7 +1798,8 @@ export const FirstPersonOverlay = ({ onExit }: { onExit: () => void }) => {
     >
       {!hasPlacedSpawn && (
         <div className="corner-smooth rounded-full border border-border/40 bg-background/80 px-3 py-1 text-center text-muted-foreground text-xs shadow-elevation-3 backdrop-blur-xl">
-          Place a spawn point from the Build tab to control where walkthrough starts.
+          Coloca un punto de inicio desde la pestaña de construcción para elegir dónde empieza el
+          recorrido.
         </div>
       )}
     </WalkthroughHud>

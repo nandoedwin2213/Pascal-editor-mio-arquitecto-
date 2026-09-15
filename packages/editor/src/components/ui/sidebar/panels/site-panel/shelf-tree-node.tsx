@@ -104,7 +104,7 @@ export const ShelfTreeNode = memo(function ShelfTreeNode({
       isVisible={isVisible}
       label={
         <InlineRenameInput
-          defaultName="Shelf"
+          defaultName="Estante"
           isEditing={isEditing}
           nodeId={nodeId}
           onStartEditing={handleStartEditing}

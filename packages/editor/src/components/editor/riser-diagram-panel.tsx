@@ -48,7 +48,7 @@ function RiserDiagramContent() {
     <div className="dark pointer-events-auto absolute top-4 right-4 z-30 flex max-h-[80vh] w-[26rem] flex-col overflow-hidden rounded-2xl border border-border/40 bg-background/95 text-foreground shadow-lg backdrop-blur-xl">
       <div className="flex items-center justify-between border-border/40 border-b px-4 py-2.5">
         <div className="flex flex-col">
-          <span className="font-medium text-sm">Riser Diagram</span>
+          <span className="font-medium text-sm">Diagrama de montantes</span>
           <span className="text-muted-foreground text-xs">DWV plumbing isometric</span>
         </div>
         <button
@@ -74,7 +74,7 @@ function RiserDiagramContent() {
           <svg
             height={Math.max(height, 120)}
             role="img"
-            aria-label="DWV riser diagram"
+            aria-label="Diagrama de montantes DWV"
             viewBox={`0 0 ${Math.max(width, 200)} ${Math.max(height, 120)}`}
             width="100%"
           >
@@ -128,7 +128,8 @@ function RiserDiagramContent() {
           </svg>
         ) : (
           <div className="flex h-32 items-center justify-center px-6 text-center text-muted-foreground text-sm">
-            No drain, waste, or vent pipes yet. Draw plumbing to see the riser diagram.
+            Aún no hay tuberías de desagüe ni de ventilación. Dibuja instalaciones para ver el
+            diagrama.
           </div>
         )}
       </div>
