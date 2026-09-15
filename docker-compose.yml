@@ -13,6 +13,9 @@ services:
       # Scene database location. Without the volume below, every saved project is
       # discarded when the container is recreated.
       PASCAL_DATA_DIR: /data
+      # Browser origins allowed to call the scene API when a reverse proxy
+      # forwards requests with a loopback Host header.
+      PASCAL_SCENE_API_ORIGINS: ${PASCAL_SCENE_API_ORIGINS:-}
     volumes:
       - pascal-data:/data
     restart: unless-stopped
