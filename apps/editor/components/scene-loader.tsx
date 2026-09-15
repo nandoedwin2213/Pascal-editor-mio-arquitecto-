@@ -3,13 +3,15 @@
 // Node registry bootstrap is loaded once at the root via
 // `<ClientBootstrap>` in `app/layout.tsx` — no per-page side-effect
 // import here.
+import { emitter } from '@pascal-app/core'
 import {
   applySceneGraphToEditor,
   Editor,
+  ItemsPanel,
   type SceneGraph,
   type SidebarTab,
 } from '@pascal-app/editor'
-import { Hammer, Layers, Settings } from 'lucide-react'
+import { Hammer, Layers, Package, Settings } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -31,6 +33,10 @@ export interface SceneMeta {
   ownerId: string | null
   sizeBytes: number
   nodeCount: number
+}
+
+function EditorItemsPanel() {
+  return <ItemsPanel showSourceFilter={false} showTagFilters={false} />
 }
 
 const SIDEBAR_TABS: (SidebarTab & { component: React.ComponentType })[] = [
@@ -67,6 +73,22 @@ const SIDEBAR_TABS: (SidebarTab & { component: React.ComponentType })[] = [
     ),
   },
   {
+    id: 'items',
+    label: 'Items',
+    component: EditorItemsPanel,
+    mobileDefaultSnap: 0.5,
+    mobileIcon: <Package className="h-5 w-5" />,
+    icon: (
+      <Image
+        alt=""
+        className="h-8 w-8 object-contain"
+        height={32}
+        src="/icons/couch.webp"
+        width={32}
+      />
+    ),
+  },
+  {
     id: 'settings',
     label: 'Settings',
     component: () => null,
@@ -83,6 +105,9 @@ const SIDEBAR_TABS: (SidebarTab & { component: React.ComponentType })[] = [
     ),
   },
 ]
+
+/** Minimum delay between auto-captured scene thumbnails. */
+const THUMBNAIL_INTERVAL_MS = 60_000
 
 interface SceneLoaderProps {
   initialScene: SceneGraph
@@ -120,6 +145,7 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
   const suppressRemoteSaveUntilRef = useRef(0)
   const [conflict, setConflict] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
+  const lastThumbnailAtRef = useRef(0)
 
   const lightPreview = isLightPreviewQuery(searchParams)
 
@@ -188,11 +214,22 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
         versionRef.current = next.version
         serverNodeCountRef.current = next.nodeCount
         setSaveError(null)
+
+        if (
+          !(document.hidden || options?.keepalive) &&
+          Date.now() - lastThumbnailAtRef.current > THUMBNAIL_INTERVAL_MS
+        ) {
+          lastThumbnailAtRef.current = Date.now()
+          emitter.emit('camera-controls:generate-thumbnail', {
+            projectId: meta.projectId ?? 'default',
+            snapLevels: true,
+          })
+        }
       } catch (error) {
         setSaveError(error instanceof Error ? error.message : 'Save failed')
       }
     },
-    [meta.id, meta.name],
+    [meta.id, meta.name, meta.projectId],
   )
 
   useEffect(() => {
@@ -227,12 +264,11 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
   }, [meta.id])
 
   const handleThumb = useCallback(
-    async (_blob: Blob) => {
-      // TODO(phase7): upload thumbnail via POST /api/scenes/[id]/thumbnail.
-      // Stub endpoint is not yet implemented in v0.1 — skip upload for now.
+    async (blob: Blob) => {
       await fetch(`/api/scenes/${meta.id}/thumbnail`, {
         method: 'POST',
-        // Intentionally no body — endpoint is a stub.
+        headers: { 'Content-Type': blob.type || 'image/webp' },
+        body: blob,
       }).catch(() => {
         // Swallow errors silently; thumbnail upload is best-effort.
       })
