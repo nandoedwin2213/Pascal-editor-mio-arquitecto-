@@ -1,15 +1,18 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { ACCESS_COOKIE, accessPassword, accessToken, safeEqual } from '@/lib/access'
 
-/** Paths that must stay reachable so the sign-in page itself can render. */
-const PUBLIC_PATHS = ['/acceso', '/api/access', '/api/health']
+/** Public surface: landing, sign-in, legal pages and health check. */
+const PUBLIC_PATHS = ['/acceso', '/api/access', '/api/health', '/terms', '/privacy']
 
 export async function proxy(request: NextRequest) {
   const password = accessPassword()
   if (!password) return NextResponse.next()
 
   const { pathname } = request.nextUrl
-  if (PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
+  if (
+    pathname === '/' ||
+    PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))
+  ) {
     return NextResponse.next()
   }
 
