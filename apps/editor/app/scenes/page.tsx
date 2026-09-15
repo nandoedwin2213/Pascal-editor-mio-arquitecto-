@@ -28,8 +28,10 @@ async function resolveBaseUrl(): Promise<string> {
 
 async function fetchScenes(): Promise<SceneMeta[]> {
   const base = await resolveBaseUrl()
+  const cookie = (await headers()).get('cookie')
   const response = await fetch(`${base}/api/scenes?limit=50`, {
     cache: 'no-store',
+    headers: cookie ? { cookie } : undefined,
   })
   if (!response.ok) {
     return []
@@ -66,6 +68,9 @@ export default async function ScenesPage() {
                 width={24}
               />
               <span className="font-semibold tracking-tight">{BRAND.name}</span>
+              <span className="hidden text-muted-foreground text-xs sm:inline">
+                por {BRAND.company}
+              </span>
             </Link>
             <span className="text-muted-foreground">/</span>
             <span className="font-medium text-foreground">Escenas</span>
@@ -119,6 +124,23 @@ export default async function ScenesPage() {
           </ul>
         )}
       </main>
+
+      <footer className="border-border/60 border-t">
+        <div className="container mx-auto flex items-center justify-center gap-3 px-6 py-8">
+          <span className="rounded-md bg-white px-3 py-2">
+            <Image
+              alt={BRAND.company}
+              className="h-6 w-auto object-contain"
+              height={24}
+              src="/brand/berriot-corp.webp"
+              width={24}
+            />
+          </span>
+          <span className="text-muted-foreground text-xs uppercase tracking-widest">
+            {BRAND.company} Constructora
+          </span>
+        </div>
+      </footer>
     </div>
   )
 }

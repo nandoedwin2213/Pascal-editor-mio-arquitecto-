@@ -29,8 +29,10 @@ async function resolveBaseUrl(): Promise<string> {
 
 async function fetchScene(id: string): Promise<SceneWithGraph | null> {
   const base = await resolveBaseUrl()
+  const cookie = (await headers()).get('cookie')
   const response = await fetch(`${base}/api/scenes/${encodeURIComponent(id)}`, {
     cache: 'no-store',
+    headers: cookie ? { cookie } : undefined,
   })
   if (response.status === 404) {
     return null

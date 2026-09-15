@@ -16,6 +16,8 @@ services:
       # Browser origins allowed to call the scene API when a reverse proxy
       # forwards requests with a loopback Host header.
       PASCAL_SCENE_API_ORIGINS: ${PASCAL_SCENE_API_ORIGINS:-}
+      # Shared password required to open the app. Leave empty to keep it public.
+      QUINDE_ACCESS_PASSWORD: ${QUINDE_ACCESS_PASSWORD:-}
     volumes:
       - pascal-data:/data
     restart: unless-stopped
