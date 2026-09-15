@@ -1,9 +1,31 @@
 import { Agentation } from 'agentation'
 import { GeistPixelSquare } from 'geist/font/pixel'
+import type { Metadata, Viewport } from 'next'
 import { Barlow } from 'next/font/google'
 import localFont from 'next/font/local'
+import { BRAND } from '@/lib/brand'
 import { ClientBootstrap } from './client-bootstrap'
 import './globals.css'
+
+export const metadata: Metadata = {
+  title: {
+    default: `${BRAND.name} — ${BRAND.tagline}`,
+    template: `%s — ${BRAND.name}`,
+  },
+  description: BRAND.description,
+  applicationName: BRAND.name,
+  openGraph: {
+    title: `${BRAND.name} — ${BRAND.tagline}`,
+    description: BRAND.description,
+    siteName: BRAND.name,
+    locale: 'es_EC',
+    type: 'website',
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: BRAND.ink,
+}
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -32,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       className={`${geistSans.variable} ${geistMono.variable} ${GeistPixelSquare.variable} ${barlow.variable}`}
-      lang="en"
+      lang="es"
     >
       <body className="font-sans">
         <ClientBootstrap enableDevDiagnostics={enableDevDiagnostics}>{children}</ClientBootstrap>
