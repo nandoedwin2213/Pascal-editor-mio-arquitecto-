@@ -4,6 +4,8 @@ node_modules
 **/.next
 **/.turbo
 **/dist
+# Stale build state would make `tsc --build` skip emitting the excluded dist.
+**/*.tsbuildinfo
 .env
 .env.local
 .env*.local
