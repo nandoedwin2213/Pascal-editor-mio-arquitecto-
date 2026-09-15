@@ -16,11 +16,11 @@ export default function AccessPage() {
           <div className="mx-auto mb-6 w-fit rounded-xl bg-white px-5 py-4">
             <Image
               alt={BRAND.company}
-              className="h-16 w-auto object-contain"
-              height={64}
+              className="h-20 w-auto object-contain"
+              height={188}
               priority
               src="/brand/berriot-corp.webp"
-              width={64}
+              width={447}
             />
           </div>
           <h1 className="font-semibold text-2xl tracking-tight">{BRAND.name}</h1>

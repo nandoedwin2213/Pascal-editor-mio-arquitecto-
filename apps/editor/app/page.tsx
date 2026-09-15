@@ -41,21 +41,16 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background text-foreground">
       <header className="border-border/60 border-b">
         <div className="container mx-auto flex items-center justify-between gap-4 px-6 py-4">
-          <div className="flex items-center gap-3">
-            <span className="rounded-md bg-white px-2 py-1">
-              <Image
-                alt={BRAND.company}
-                className="h-7 w-auto object-contain"
-                height={28}
-                priority
-                src="/brand/berriot-corp.webp"
-                width={28}
-              />
-            </span>
-            <span className="text-muted-foreground text-xs uppercase tracking-widest">
-              {BRAND.company} Constructora
-            </span>
-          </div>
+          <span className="rounded-lg bg-white px-3 py-2">
+            <Image
+              alt={`${BRAND.company} Constructora`}
+              className="h-12 w-auto object-contain"
+              height={188}
+              priority
+              src="/brand/berriot-corp.webp"
+              width={447}
+            />
+          </span>
           <Link
             className="rounded-md border border-border px-3 py-1.5 font-medium text-sm hover:bg-accent/40"
             href="/scenes"
@@ -67,7 +62,17 @@ export default function LandingPage() {
 
       <main>
         <section className="container mx-auto max-w-5xl px-6 py-20 text-center sm:py-28">
-          <div className="mx-auto mb-8 flex w-fit items-center gap-3 rounded-full border border-border/60 px-4 py-1.5 text-muted-foreground text-xs uppercase tracking-widest">
+          <span className="mx-auto mb-8 inline-block rounded-2xl bg-white px-8 py-5 shadow-sm">
+            <Image
+              alt={`${BRAND.company} Constructora`}
+              className="h-24 w-auto object-contain sm:h-32"
+              height={188}
+              priority
+              src="/brand/berriot-corp.webp"
+              width={447}
+            />
+          </span>
+          <div className="mx-auto mb-6 flex w-fit items-center gap-3 rounded-full border border-border/60 px-4 py-1.5 text-muted-foreground text-xs uppercase tracking-widest">
             <Image alt="" className="rounded" height={18} src="/brand/quinde-mark.png" width={18} />
             Una marca de {BRAND.company}
           </div>
@@ -110,13 +115,13 @@ export default function LandingPage() {
 
         <section className="container mx-auto max-w-5xl px-6 py-16">
           <div className="flex flex-col items-center gap-8 rounded-2xl border border-border/60 p-8 sm:flex-row sm:p-12">
-            <span className="shrink-0 rounded-xl bg-white p-4">
+            <span className="shrink-0 rounded-xl bg-white px-6 py-5">
               <Image
-                alt={BRAND.company}
-                className="h-24 w-auto object-contain"
-                height={96}
+                alt={`${BRAND.company} Constructora`}
+                className="h-28 w-auto object-contain"
+                height={188}
                 src="/brand/berriot-corp.webp"
-                width={96}
+                width={447}
               />
             </span>
             <div>
