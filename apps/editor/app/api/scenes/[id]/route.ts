@@ -9,6 +9,7 @@ import {
   withSceneApiHeaders,
 } from '@/lib/scene-api-security'
 import { getSceneOperations } from '@/lib/scene-store-server'
+import { deleteSceneThumbnail } from '@/lib/scene-thumbnails'
 
 export const dynamic = 'force-dynamic'
 
@@ -137,6 +138,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     if (!removed) {
       return sceneApiJson(request, { error: 'not_found' }, { status: 404 })
     }
+    await deleteSceneThumbnail(id)
     return withSceneApiHeaders(request, new NextResponse(null, { status: 204 }))
   } catch (error) {
     return handleStoreError(request, error, { includeCurrentVersionFor: id })

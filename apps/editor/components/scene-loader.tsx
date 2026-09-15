@@ -19,6 +19,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { countGraphNodes, isEmptyGraphOverwrite } from '@/lib/empty-graph-guard'
 import { type PersistedSceneGraph, sceneGraphSignature } from '@/lib/scene-signature'
 import { cn } from '@/lib/utils'
+import { waitForItemModels } from '@/lib/wait-for-item-models'
 import { BuildTab } from './build-tab'
 import { CommunityViewerToolbarLeft, CommunityViewerToolbarRight } from './viewer-toolbar'
 
@@ -108,6 +109,8 @@ const SIDEBAR_TABS: (SidebarTab & { component: React.ComponentType })[] = [
 
 /** Minimum delay between auto-captured scene thumbnails. */
 const THUMBNAIL_INTERVAL_MS = 60_000
+/** Cap on how long a capture waits for item models before shooting anyway. */
+const THUMBNAIL_MODEL_WAIT_MS = 8000
 
 interface SceneLoaderProps {
   initialScene: SceneGraph
@@ -220,6 +223,7 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
           Date.now() - lastThumbnailAtRef.current > THUMBNAIL_INTERVAL_MS
         ) {
           lastThumbnailAtRef.current = Date.now()
+          await waitForItemModels(THUMBNAIL_MODEL_WAIT_MS)
           emitter.emit('camera-controls:generate-thumbnail', {
             projectId: meta.projectId ?? 'default',
             snapLevels: true,
