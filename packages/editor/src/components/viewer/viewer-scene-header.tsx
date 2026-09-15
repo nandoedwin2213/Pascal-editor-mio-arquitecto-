@@ -14,6 +14,7 @@ import { ArrowLeft, ChevronRight, Layers } from 'lucide-react'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import { t } from '../../i18n'
 import { cn } from '../../lib/utils'
 
 const getNodeName = (node: AnyNode): string => {
@@ -101,7 +102,7 @@ export const ViewerSceneHeader = ({
         <div className="flex items-center gap-3 px-3 py-2.5">
           {onBack ? (
             <button
-              aria-label="Back"
+              aria-label={t('Back')}
               className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10"
               onClick={onBack}
               type="button"
@@ -110,7 +111,7 @@ export const ViewerSceneHeader = ({
             </button>
           ) : (
             <Link
-              aria-label="Back"
+              aria-label={t('Back')}
               className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10"
               href={backHref}
               prefetch={false}
@@ -145,7 +146,7 @@ export const ViewerSceneHeader = ({
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 onClick={() => handleBreadcrumbClick('root')}
               >
-                Site
+                {t('Site')}
               </button>
 
               <ChevronRight className="h-3 w-3 text-muted-foreground/50" />
@@ -196,7 +197,7 @@ export const ViewerSceneHeader = ({
       {building && levels.length > 0 && (
         <div className="corner-smooth pointer-events-auto flex w-48 flex-col overflow-hidden rounded-2xl border border-border/40 bg-background/95 py-1 shadow-elevation-4 backdrop-blur-xl transition-colors duration-200 ease-out">
           <span className="px-3 py-2 font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
-            Levels
+            {t('Levels')}
           </span>
           <div className="flex flex-col">
             {levels.map((lvl) => {

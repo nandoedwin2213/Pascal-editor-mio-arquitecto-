@@ -1,9 +1,14 @@
 import type { SceneGraph } from '@pascal-app/editor'
+import type { Metadata } from 'next'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import { SceneLoader, type SceneMeta } from '@/components/scene-loader'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Escena',
+}
 
 interface SceneWithGraph extends SceneMeta {
   graph: SceneGraph

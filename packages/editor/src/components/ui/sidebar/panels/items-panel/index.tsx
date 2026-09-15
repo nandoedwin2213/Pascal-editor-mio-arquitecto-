@@ -11,6 +11,7 @@ import { furnishTools } from '../../../action-menu/furnish-tools'
 import { CATALOG_ITEMS } from '../../../item-catalog/catalog-items'
 import { ItemCatalog } from '../../../item-catalog/item-catalog'
 import { type FunctionTreeNode, FunctionTreePanel } from './function-tree-panel'
+import { t } from '../../../../../i18n'
 
 const PLACEMENT_TAGS = new Set(['floor', 'wall', 'ceiling', 'countertop'])
 
@@ -242,7 +243,7 @@ function LegacyItemsPanel({
               setSearch(e.target.value)
               onSearchChange?.(e.target.value)
             }}
-            placeholder="Search..."
+            placeholder={t('Search...')}
             type="text"
             value={search}
           />
@@ -284,7 +285,7 @@ function LegacyItemsPanel({
                   onClick={() => setActivePlacementTag(null)}
                   type="button"
                 >
-                  All
+                  {t('All')}
                 </button>
                 {placementTags.map((tag) => {
                   const count = placementCount(tag)

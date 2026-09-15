@@ -15,6 +15,7 @@ import { Button } from '../primitives/button'
 import { Input } from '../primitives/input'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../primitives/tooltip'
 import { MaterialPropertiesEditor } from './material-properties-editor'
+import { t } from '../../../i18n'
 
 type SlotRecord = Record<string, string | undefined>
 
@@ -173,7 +174,7 @@ function SceneMaterialRow({
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                aria-label="Paint with"
+                aria-label={t('Paint with')}
                 onClick={() =>
                   armMaterialPaint({
                     materialPreset: toSceneMaterialRef(id),
@@ -187,12 +188,12 @@ function SceneMaterialRow({
                 <Paintbrush />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Paint with</TooltipContent>
+            <TooltipContent>{t('Paint with')}</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                aria-label="Edit"
+                aria-label={t('Edit')}
                 aria-pressed={isEditingMaterial}
                 onClick={() => setIsEditingMaterial((value) => !value)}
                 size="icon-sm"
@@ -202,12 +203,12 @@ function SceneMaterialRow({
                 <Pencil />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Edit</TooltipContent>
+            <TooltipContent>{t('Edit')}</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                aria-label="Duplicate"
+                aria-label={t('Duplicate')}
                 onClick={duplicateMaterial}
                 size="icon-sm"
                 type="button"
@@ -216,12 +217,12 @@ function SceneMaterialRow({
                 <Copy />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Duplicate</TooltipContent>
+            <TooltipContent>{t('Duplicate')}</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                aria-label="Delete"
+                aria-label={t('Delete')}
                 onClick={() => removeSceneMaterial(id)}
                 size="icon-sm"
                 type="button"
@@ -230,7 +231,7 @@ function SceneMaterialRow({
                 <Trash2 />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Delete</TooltipContent>
+            <TooltipContent>{t('Delete')}</TooltipContent>
           </Tooltip>
         </div>
       </div>

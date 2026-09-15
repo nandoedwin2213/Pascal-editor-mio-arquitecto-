@@ -64,6 +64,7 @@ import {
 } from 'three'
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from 'three-mesh-bvh'
 import '../../three-types'
+import { t } from '../../i18n'
 import {
   closeDoorOpenState,
   DOOR_SWING_OPEN_ANGLE,
@@ -1798,7 +1799,7 @@ export const FirstPersonOverlay = ({ onExit }: { onExit: () => void }) => {
     >
       {!hasPlacedSpawn && (
         <div className="corner-smooth rounded-full border border-border/40 bg-background/80 px-3 py-1 text-center text-muted-foreground text-xs shadow-elevation-3 backdrop-blur-xl">
-          Place a spawn point from the Build tab to control where walkthrough starts.
+          {t('Place a spawn point from the Build tab to control where walkthrough starts.')}
         </div>
       )}
     </WalkthroughHud>

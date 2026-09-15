@@ -1,4 +1,7 @@
-# Pascal Editor
+# Quinde
+
+Estudio 3D de arquitectura local-first, construido sobre
+[Pascal Editor](https://github.com/pascalorg/editor) (MIT). *Quinde* es colibrí en kichwa.
 
 An open-source, local-first 3D building editor built with React Three Fiber and
 WebGPU. Run it in the browser or from the CLI, and connect AI agents through MCP.

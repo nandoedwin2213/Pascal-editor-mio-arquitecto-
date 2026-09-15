@@ -8,6 +8,7 @@ import useEditor from './../../../../../store/use-editor'
 import { InlineRenameInput } from './inline-rename-input'
 import { focusTreeNode, handleTreeSelection, TreeNodeWrapper } from './tree-node'
 import { TreeNodeActions } from './tree-node-actions'
+import { t } from '../../../../../i18n'
 
 interface SpawnTreeNodeProps {
   nodeId: SpawnNode['id']
@@ -64,7 +65,7 @@ export const SpawnTreeNode = memo(function SpawnTreeNode({
       isVisible={isVisible}
       label={
         <InlineRenameInput
-          defaultName="Spawn Point"
+          defaultName={t('Spawn Point')}
           isEditing={isEditing}
           nodeId={nodeId}
           onStartEditing={() => setIsEditing(true)}

@@ -9,6 +9,7 @@ import useEditor from './../../../../../store/use-editor'
 import { InlineRenameInput } from './inline-rename-input'
 import { focusTreeNode, handleTreeSelection, TreeNodeWrapper } from './tree-node'
 import { TreeNodeActions } from './tree-node-actions'
+import { t } from '../../../../../i18n'
 
 interface WindowTreeNodeProps {
   nodeId: AnyNodeId
@@ -66,7 +67,7 @@ export const WindowTreeNode = memo(function WindowTreeNode({
       isVisible={isVisible}
       label={
         <InlineRenameInput
-          defaultName="Window"
+          defaultName={t('Window')}
           isEditing={isEditing}
           nodeId={nodeId as AnyNodeId}
           onStartEditing={handleStartEditing}

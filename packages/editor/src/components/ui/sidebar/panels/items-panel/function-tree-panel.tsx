@@ -12,6 +12,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '../../../../../components/ui/primitives/tooltip'
+import { t } from '../../../../../i18n'
 
 /** A function-axis taxonomy node, assembled into a tree by the embedder. */
 export type FunctionTreeNode = {
@@ -178,7 +179,7 @@ export function FunctionTreePanel({
               setSearch(e.target.value)
               onSearchChange?.(e.target.value)
             }}
-            placeholder="Search..."
+            placeholder={t('Search...')}
             type="text"
             value={search}
           />
@@ -217,7 +218,7 @@ export function FunctionTreePanel({
               onClick={() => setActiveChildSlug(null)}
               type="button"
             >
-              All
+              {t('All')}
             </button>
             {activeRoot.children.map((child) => {
               const isActive = activeChildSlug === child.slug

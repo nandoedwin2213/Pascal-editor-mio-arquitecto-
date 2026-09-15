@@ -35,6 +35,7 @@ import { ViewerZoneSystem } from '../../components/viewer-zone-system'
 import { type SaveStatus, useAutoSave } from '../../hooks/use-auto-save'
 import { useKeyboard } from '../../hooks/use-keyboard'
 import { useSaveShortcut } from '../../hooks/use-save-shortcut'
+import { t } from '../../i18n'
 import { type ActivePaintMaterial, hasActivePaintMaterial } from '../../lib/material-paint'
 import {
   applySceneGraphToEditor,
@@ -46,6 +47,7 @@ import { disposeSFXBus, initSFXBus } from '../../lib/sfx-bus'
 import { type CameraHintAction, useCameraHintFocus } from '../../store/use-camera-hint-focus'
 import useEditor from '../../store/use-editor'
 import useFloorplanMode from '../../store/use-floorplan-mode'
+import { useLanguageHydration } from '../../store/use-language'
 import useSessionGroups from '../../store/use-session-groups'
 import { CeilingSelectionAffordanceSystem } from '../systems/ceiling/ceiling-selection-affordance-system'
 import { CeilingSystem } from '../systems/ceiling/ceiling-system'
@@ -242,9 +244,9 @@ function EditorSceneCrashFallback() {
   return (
     <div className="fixed inset-0 z-80 flex items-center justify-center bg-background/95 p-4 text-foreground">
       <div className="w-full max-w-md rounded-2xl border border-border/60 bg-background p-6 shadow-xl">
-        <h2 className="font-semibold text-lg">The editor scene failed to render</h2>
+        <h2 className="font-semibold text-lg">{t('The editor scene failed to render')}</h2>
         <p className="mt-2 text-muted-foreground text-sm">
-          You can retry the scene or return home without reloading the whole app shell.
+          {t('You can retry the scene or return home without reloading the whole app shell.')}
         </p>
         <div className="mt-4 flex items-center gap-2">
           <button
@@ -252,13 +254,13 @@ function EditorSceneCrashFallback() {
             onClick={() => window.location.reload()}
             type="button"
           >
-            Reload editor
+            {t('Reload editor')}
           </button>
           <a
             className="rounded-md border border-border bg-background px-3 py-2 font-medium text-sm hover:bg-accent/40"
             href="/"
           >
-            Back to home
+            {t('Back to home')}
           </a>
         </div>
       </div>
@@ -340,7 +342,7 @@ function SidebarSlot({ children }: { children: ReactNode }) {
           <div
             className="absolute inset-0 z-10 cursor-col-resize transition-colors hover:bg-primary/20"
             onPointerDown={handleGrabDown}
-            title="Expand sidebar"
+            title={t('Expand sidebar')}
           />
         ) : (
           children
@@ -550,7 +552,7 @@ function ViewerCanvasControlsHint({
   return (
     <div className="pointer-events-none absolute top-14 left-1/2 z-40 max-w-[calc(100%-2rem)] -translate-x-1/2">
       <section
-        aria-label="Camera controls hint"
+        aria-label={t('Camera controls hint')}
         className="pointer-events-auto flex items-start gap-3 rounded-2xl border border-border/35 bg-background/90 px-3.5 py-2.5 shadow-elevation-4 backdrop-blur-xl"
       >
         <div
@@ -564,7 +566,7 @@ function ViewerCanvasControlsHint({
         <Tooltip>
           <TooltipTrigger asChild>
             <button
-              aria-label="Dismiss camera controls hint"
+              aria-label={t('Dismiss camera controls hint')}
               className="flex h-5 shrink-0 items-center justify-center self-center border-border/18 border-l pl-3 text-muted-foreground/70 transition-colors hover:text-foreground"
               onClick={onDismiss}
               type="button"
@@ -579,7 +581,7 @@ function ViewerCanvasControlsHint({
             </button>
           </TooltipTrigger>
           <TooltipContent side="bottom" sideOffset={8}>
-            Dismiss
+            {t('Dismiss')}
           </TooltipContent>
         </Tooltip>
       </section>
@@ -1688,9 +1690,11 @@ function EditorContent({
 }
 
 export default function Editor(props: EditorProps) {
+  const language = useLanguageHydration()
+
   return (
     <Profiler id="editor" onRender={recordEditorRender}>
-      <EditorContent {...props} />
+      <EditorContent key={language} {...props} />
     </Profiler>
   )
 }

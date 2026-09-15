@@ -14,6 +14,7 @@ import {
   TreeNodeWrapper,
 } from './tree-node'
 import { TreeNodeActions } from './tree-node-actions'
+import { t } from '../../../../../i18n'
 
 interface ShelfTreeNodeProps {
   nodeId: ShelfNode['id']
@@ -104,7 +105,7 @@ export const ShelfTreeNode = memo(function ShelfTreeNode({
       isVisible={isVisible}
       label={
         <InlineRenameInput
-          defaultName="Shelf"
+          defaultName={t('Shelf')}
           isEditing={isEditing}
           nodeId={nodeId}
           onStartEditing={handleStartEditing}

@@ -76,6 +76,7 @@ import {
 import { createPortal } from 'react-dom'
 import { Vector3 } from 'three'
 import { useShallow } from 'zustand/react/shallow'
+import { t } from '../../i18n'
 import { resolveCeilingPlanPointSnap } from '../../lib/ceiling-plan-snap'
 import {
   alignFloorplanDraftPoint,
@@ -195,7 +196,6 @@ import {
   WALL_JOIN_SNAP_RADIUS,
   type WallPlanPoint,
 } from '../tools/wall/wall-drafting'
-
 import { PALETTE_COLORS } from '../ui/primitives/color-dot'
 import { FloorplanCompassButton } from '../viewer/floorplan-compass-button'
 import { resolveFloorplanBackgroundSelection } from './floorplan-background-selection'
@@ -11219,7 +11219,7 @@ export function FloorplanPanel({
                 <Ruler className="h-4 w-4 text-foreground/80" />
               </div>
               <div className="min-w-0">
-                <div className="font-medium text-sm">Set overlay scale</div>
+                <div className="font-medium text-sm">{t('Set image scale')}</div>
                 <div className="mt-0.5 text-muted-foreground text-xs leading-4">
                   Enter the real-world length of the line you just drew. The image will resize to
                   match it.
@@ -11229,7 +11229,7 @@ export function FloorplanPanel({
 
             <div className="mb-3 rounded-xl border border-border/70 bg-white/5 px-3 py-2">
               <div className="text-[11px] text-muted-foreground uppercase tracking-wide">
-                Drawn line
+                {t('Drawn line')}
               </div>
               <div className="mt-1 font-medium text-sm">
                 {formatMeasurement(
@@ -11243,7 +11243,7 @@ export function FloorplanPanel({
 
             <label className="block">
               <span className="mb-1.5 block font-medium text-muted-foreground text-xs">
-                Real length
+                {t('Real length')}
               </span>
               <div className="grid grid-cols-[1fr_8.25rem] gap-2">
                 <input
@@ -11264,10 +11264,10 @@ export function FloorplanPanel({
                   }
                   value={referenceScaleUnit}
                 >
-                  <option value="meters">Meters</option>
-                  <option value="centimeters">Centimeters</option>
-                  <option value="feet">Feet</option>
-                  <option value="inches">Inches</option>
+                  <option value="meters">{t('Meters')}</option>
+                  <option value="centimeters">{t('Centimeters')}</option>
+                  <option value="feet">{t('Feet')}</option>
+                  <option value="inches">{t('Inches')}</option>
                 </select>
               </div>
               <span
@@ -11294,14 +11294,14 @@ export function FloorplanPanel({
                 onClick={() => setPendingReferenceScale(null)}
                 type="button"
               >
-                Cancel
+                {t('Cancel')}
               </button>
               <button
                 className="h-8 rounded-lg bg-foreground px-3 font-medium text-background text-xs transition hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-50"
                 disabled={!pendingReferenceMetersPerUnit}
                 type="submit"
               >
-                Save Scale
+                {t('Save Scale')}
               </button>
             </div>
           </form>
@@ -11309,7 +11309,7 @@ export function FloorplanPanel({
 
         {levelNode?.type !== 'level' && !hasAmbientBuildingLevel ? (
           <div className="flex h-full items-center justify-center px-6 text-center text-muted-foreground text-sm">
-            Switch to a building level to view and edit the floorplan.
+            {t('Switch to a building level to view and edit the floorplan.')}
           </div>
         ) : isFloorplanOpen ? (
           // The panel stays mounted in 3D mode (display:none) to keep the

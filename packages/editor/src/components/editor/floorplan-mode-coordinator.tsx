@@ -3,6 +3,7 @@
 import { emitter, nodeRegistry } from '@pascal-app/core'
 import { X } from 'lucide-react'
 import { useEffect, useRef } from 'react'
+import { t } from '../../i18n'
 import { getFloorplanNodeExtension } from '../../lib/floorplan/floorplan-extension'
 import { isFloorplanToolAvailableInMode } from '../../lib/floorplan/floorplan-mode'
 import useEditor from '../../store/use-editor'
@@ -66,11 +67,11 @@ export function FloorplanModeCoordinator() {
           }}
           type="button"
         >
-          Switch to Expert
+          {t('Switch to Expert')}
         </button>
       ) : null}
       <button
-        aria-label="Dismiss"
+        aria-label={t('Dismiss')}
         className="shrink-0 rounded p-1 text-muted-foreground hover:bg-white/10 hover:text-foreground"
         onClick={dismissNotice}
         type="button"

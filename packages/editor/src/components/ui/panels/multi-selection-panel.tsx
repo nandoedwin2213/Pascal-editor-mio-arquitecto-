@@ -17,6 +17,7 @@ import useSessionGroups, {
 import { ActionButton, ActionGroup } from '../controls/action-button'
 import { PanelWrapper } from './panel-wrapper'
 import { formatSelectionBreakdown } from './selection-breakdown'
+import { t } from '../../../i18n'
 
 export function MultiSelectionActions() {
   const selectedIds = useViewer((s) => s.selection.selectedIds)
@@ -37,28 +38,28 @@ export function MultiSelectionActions() {
       {showGroup && (
         <ActionButton
           icon={<Group className="h-4 w-4" />}
-          label="Group"
+          label={t('Group')}
           onClick={() => groupCurrentSelection()}
-          title="Group (Ctrl/Cmd+G)"
+          title={t('Group (Ctrl/Cmd+G)')}
         />
       )}
       {showUngroup && (
         <ActionButton
           icon={<Ungroup className="h-4 w-4" />}
-          label="Ungroup"
+          label={t('Ungroup')}
           onClick={() => ungroupCurrentSelection()}
-          title="Ungroup (Ctrl/Cmd+Shift+G)"
+          title={t('Ungroup (Ctrl/Cmd+Shift+G)')}
         />
       )}
       <ActionButton
         icon={<Copy className="h-4 w-4" />}
-        label="Duplicate"
+        label={t('Duplicate')}
         onClick={() => duplicateSelectionAndPickUp()}
       />
       <ActionButton
         className="border-red-500/40 text-red-200 hover:bg-red-500/15"
         icon={<Trash2 className="h-4 w-4 text-red-400" />}
-        label="Delete"
+        label={t('Delete')}
         onClick={() => deleteSelection()}
       />
     </ActionGroup>

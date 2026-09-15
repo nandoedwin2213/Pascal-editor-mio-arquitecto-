@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { t } from '../../i18n'
 import useDeleteConfirmation from '../../store/use-delete-confirmation'
 import {
   Dialog,
@@ -38,14 +39,14 @@ export function DeleteConfirmationDialog() {
             onClick={cancel}
             type="button"
           >
-            Cancel
+            {t('Cancel')}
           </button>
           <button
             className="rounded-full bg-red-600 px-4 py-2 text-sm text-white transition-colors hover:bg-red-700"
             onClick={confirm}
             type="button"
           >
-            Delete
+            {t('Delete')}
           </button>
         </DialogFooter>
       </DialogContent>

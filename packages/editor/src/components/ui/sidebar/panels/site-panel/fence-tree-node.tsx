@@ -6,6 +6,7 @@ import useEditor from '../../../../../store/use-editor'
 import { InlineRenameInput } from './inline-rename-input'
 import { focusTreeNode, handleTreeSelection, TreeNodeWrapper } from './tree-node'
 import { TreeNodeActions } from './tree-node-actions'
+import { t } from '../../../../../i18n'
 
 interface FenceTreeNodeProps {
   nodeId: AnyNodeId
@@ -51,7 +52,7 @@ export const FenceTreeNode = memo(function FenceTreeNode({
       isVisible={node.visible !== false}
       label={
         <InlineRenameInput
-          defaultName="Fence"
+          defaultName={t('Fence')}
           isEditing={isEditing}
           nodeId={node.id}
           onStartEditing={() => setIsEditing(true)}

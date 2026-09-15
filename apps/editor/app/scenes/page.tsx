@@ -1,9 +1,16 @@
+import type { Metadata } from 'next'
 import { headers } from 'next/headers'
+import Image from 'next/image'
 import Link from 'next/link'
 import { CreateSceneButton } from '@/components/save-button'
 import type { SceneMeta } from '@/components/scene-loader'
+import { BRAND } from '@/lib/brand'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Escenas',
+}
 
 async function resolveBaseUrl(): Promise<string> {
   if (process.env.NEXT_PUBLIC_APP_URL) {
@@ -49,32 +56,36 @@ export default async function ScenesPage() {
       <header className="sticky top-0 z-10 border-border border-b bg-background/95 backdrop-blur">
         <div className="container mx-auto flex items-center justify-between gap-4 px-6 py-4">
           <nav className="flex items-center gap-4 text-sm">
-            <Link
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              href="/"
-            >
-              Home
+            <Link className="flex items-center gap-2 transition-opacity hover:opacity-80" href="/">
+              <Image
+                alt=""
+                className="rounded-md"
+                height={24}
+                src="/brand/quinde-mark.png"
+                width={24}
+              />
+              <span className="font-semibold tracking-tight">{BRAND.name}</span>
             </Link>
             <span className="text-muted-foreground">/</span>
-            <span className="font-medium text-foreground">Scenes</span>
+            <span className="font-medium text-foreground">Escenas</span>
           </nav>
-          <CreateSceneButton />
+          <CreateSceneButton label="Crear escena" />
         </div>
       </header>
 
       <main className="container mx-auto max-w-5xl px-6 py-12">
-        <h1 className="mb-2 font-bold text-3xl">Your scenes</h1>
+        <h1 className="mb-2 font-bold text-3xl">Tus escenas</h1>
         <p className="mb-8 text-muted-foreground text-sm">
           {scenes.length === 0
-            ? 'No scenes yet. Create one to get started.'
-            : `${scenes.length} scene${scenes.length === 1 ? '' : 's'}.`}
+            ? 'Todavía no hay escenas. Crea una para empezar.'
+            : `${scenes.length} escena${scenes.length === 1 ? '' : 's'}.`}
         </p>
 
         {scenes.length === 0 ? (
           <div className="rounded-xl border border-border/60 border-dashed bg-background p-12 text-center">
-            <p className="text-muted-foreground text-sm">You haven&apos;t saved any scenes yet.</p>
+            <p className="text-muted-foreground text-sm">Aún no has guardado ninguna escena.</p>
             <div className="mt-4 flex justify-center">
-              <CreateSceneButton />
+              <CreateSceneButton label="Crear escena" />
             </div>
           </div>
         ) : (
@@ -94,7 +105,7 @@ export default async function ScenesPage() {
                         src={scene.thumbnailUrl}
                       />
                     ) : (
-                      <span className="text-muted-foreground text-xs">No thumbnail</span>
+                      <span className="text-muted-foreground text-xs">Sin miniatura</span>
                     )}
                   </div>
                   <div className="mt-3">
@@ -102,7 +113,7 @@ export default async function ScenesPage() {
                       {scene.name}
                     </h2>
                     <div className="mt-1 flex items-center justify-between text-muted-foreground text-xs">
-                      <span>{scene.nodeCount} nodes</span>
+                      <span>{scene.nodeCount} elementos</span>
                       <time dateTime={scene.updatedAt}>{formatDate(scene.updatedAt)}</time>
                     </div>
                   </div>
