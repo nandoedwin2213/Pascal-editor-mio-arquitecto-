@@ -13,6 +13,7 @@ import useEditor from '../../../store/use-editor'
 import { Button } from '../primitives/button'
 import { SegmentedControl } from './segmented-control'
 import { SliderControl } from './slider-control'
+import { t } from '../../../i18n'
 
 const VERB_OPTIONS: Array<{ value: TerrainVerb; iconSrc: string; hint: string }> = [
   { value: 'raise', iconSrc: '/icons/terrain-raise.webp', hint: 'Raise' },
@@ -92,7 +93,7 @@ export function TerrainSculptPanel() {
           under it lands between samples and paints nothing at all.
         */}
         <SliderControl
-          label="Tamaño"
+          label={t('Size')}
           max={maxRadius}
           min={minRadius}
           onChange={(radius) => setTerrainBrush({ radius })}
@@ -102,7 +103,7 @@ export function TerrainSculptPanel() {
           value={brush.radius}
         />
         <SliderControl
-          label="Intensidad"
+          label={t('Strength')}
           max={1}
           min={0.05}
           onChange={(strength) => setTerrainBrush({ strength })}
@@ -111,7 +112,7 @@ export function TerrainSculptPanel() {
           value={brush.strength}
         />
         <SliderControl
-          label="Suavidad"
+          label={t('Softness')}
           max={1}
           min={0}
           onChange={(falloff) => setTerrainBrush({ falloff })}
@@ -134,7 +135,7 @@ export function TerrainSculptPanel() {
           <div className="flex items-center gap-2">
             <div className="min-w-0 flex-1">
               <SliderControl
-                label="Altura objetivo"
+                label={t('Target')}
                 max={50}
                 min={-50}
                 onChange={setTerrainFlattenTarget}
@@ -145,7 +146,7 @@ export function TerrainSculptPanel() {
               />
             </div>
             <Button
-              aria-label="Tomar la altura objetivo del terreno"
+              aria-label={t('Pick target height from the ground')}
               aria-pressed={sampling}
               onClick={() => setTerrainSampling(!sampling)}
               size="icon-sm"
@@ -175,7 +176,7 @@ export function TerrainSculptPanel() {
           variant="outline"
         >
           <Mountain />
-          Nivelar lote
+          {t('Level lot')}
         </Button>
         <Button
           className="flex-1"
@@ -185,7 +186,7 @@ export function TerrainSculptPanel() {
           type="button"
           variant="outline"
         >
-          Limpiar terreno
+          {t('Clear terrain')}
         </Button>
       </div>
     </div>

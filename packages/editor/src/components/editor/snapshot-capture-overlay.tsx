@@ -17,6 +17,7 @@ import {
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { useIsMobile } from '../../hooks/use-mobile'
+import { t } from '../../i18n'
 import { triggerSFX } from '../../lib/sfx-bus'
 import { requestWalkthroughPointerLock } from '../../lib/walkthrough-pointer-lock'
 import useEditor, {
@@ -693,7 +694,7 @@ export function SnapshotCaptureOverlay({ projectId }: { projectId: string }) {
         <div className="pointer-events-none absolute top-4 left-1/2 flex -translate-x-1/2 gap-2">
           <div className={HUD_CHIP_CLASS}>
             <span className="font-mono text-[8.5px] text-white/50 uppercase tracking-[0.14em]">
-              Recorte
+              {t('Crop')}
             </span>
             <span className="font-semibold text-white text-xs">
               {isPreset ? 'Preset · square' : CROP_LABELS[mode]}
@@ -701,7 +702,7 @@ export function SnapshotCaptureOverlay({ projectId }: { projectId: string }) {
           </div>
           <div className={HUD_CHIP_CLASS}>
             <span className="font-mono text-[8.5px] text-white/50 uppercase tracking-[0.14em]">
-              Formato
+              {t('Format')}
             </span>
             <span className="font-semibold text-white text-xs tabular-nums">
               {resolution ? `${resolution.w} × ${resolution.h}` : '—'}
@@ -713,7 +714,7 @@ export function SnapshotCaptureOverlay({ projectId }: { projectId: string }) {
       {/* Top-right dismiss button (icon-only on mobile) */}
       <div className="pointer-events-auto absolute top-4 right-4">
         <button
-          aria-label="Salir del modo captura"
+          aria-label={t('Close capture mode')}
           className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-neutral-950/85 px-3 py-1.5 text-white/80 text-xs transition-colors hover:bg-neutral-950 hover:text-white"
           onClick={dismiss}
           type="button"
@@ -737,19 +738,19 @@ export function SnapshotCaptureOverlay({ projectId }: { projectId: string }) {
                 <ModeButton
                   active={cameraNav === 'orbit'}
                   icon={<Orbit className="h-3.5 w-3.5" />}
-                  label="Órbita"
+                  label={t('Orbit')}
                   onClick={() => setCameraNav('orbit')}
                 />
                 <ModeButton
                   active={cameraNav === 'walk'}
                   icon={<Footprints className="h-3.5 w-3.5" />}
-                  label="Caminata"
+                  label={t('Walk')}
                   onClick={() => setCameraNav('walk')}
                 />
                 <ModeButton
                   active={cameraNav === 'drone'}
                   icon={<Drone className="h-3.5 w-3.5" />}
-                  label="Dron"
+                  label={t('Drone')}
                   onClick={() => setCameraNav('drone')}
                 />
               </div>
@@ -757,10 +758,10 @@ export function SnapshotCaptureOverlay({ projectId }: { projectId: string }) {
             {fovValue !== null && (
               <div className="flex items-center gap-2.5 rounded-full border border-white/10 bg-neutral-950/85 py-1.5 pr-1.5 pl-3 shadow-xl">
                 <span className="font-mono text-[8.5px] text-white/50 uppercase tracking-[0.14em]">
-                  Lente
+                  {t('Lens')}
                 </span>
                 <Slider
-                  aria-label="Campo de visión"
+                  aria-label={t('Field of view')}
                   className={FOV_SLIDER_CLASS}
                   max={CAPTURE_FOV_MAX}
                   min={CAPTURE_FOV_MIN}
@@ -774,7 +775,7 @@ export function SnapshotCaptureOverlay({ projectId }: { projectId: string }) {
                   {fovValue}°
                 </span>
                 <button
-                  aria-label="Restablecer el campo de visión"
+                  aria-label={t('Reset field of view')}
                   className="grid h-6 w-6 place-items-center rounded-full text-white/50 transition-colors hover:bg-white/10 hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-white/50"
                   disabled={captureFovBaseline === null || fovValue === captureFovBaseline}
                   onClick={() => {

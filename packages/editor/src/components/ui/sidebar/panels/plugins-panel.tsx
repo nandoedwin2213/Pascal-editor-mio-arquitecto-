@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, ExternalLink, Puzzle } from 'lucide-react'
 import { lazy, type ReactNode, Suspense, useState, useSyncExternalStore } from 'react'
 import { editorHostPanelRegistry } from '../../../../lib/plugin-panels'
 import { Button } from '../../primitives/button'
+import { t } from '../../../../i18n'
 
 const PLUGIN_AUTHORING_URL =
   'https://editor.pascal.app/docs/developers/plugins'
@@ -67,7 +68,7 @@ export function PluginsPanel() {
             variant="ghost"
           >
             <ChevronLeft className="h-4 w-4" />
-            Todos los complementos
+            {t('All plugins')}
           </Button>
 
           <div className="mt-5 flex items-start gap-4">
@@ -121,7 +122,7 @@ export function PluginsPanel() {
                     rel="noreferrer"
                     target="_blank"
                   >
-                    Ver complemento
+                    {t('View plugin')}
                     <ExternalLink className="h-3 w-3" />
                   </a>
                 </dd>
@@ -164,7 +165,7 @@ export function PluginsPanel() {
       <div className="mb-5">
         <h2 className="font-semibold text-lg text-sidebar-foreground">Complementos</h2>
         <p className="mt-1 text-sidebar-foreground/60 text-sm">
-          Agrega herramientas y contenido específicos a este proyecto.
+          {t('Add focused tools and content to this project.')}
         </p>
       </div>
 

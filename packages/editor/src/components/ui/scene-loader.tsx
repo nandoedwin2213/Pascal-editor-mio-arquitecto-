@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { cn } from '../../lib/utils'
 import { Button } from './primitives/button'
+import { t } from '../../i18n'
 
 const LOADERS = [
   'pascal-loader-1',
@@ -62,11 +63,11 @@ export function SceneLoadFailed({ className, onRetry }: SceneLoadFailedProps) {
       <div className="flex flex-col gap-1">
         <p className="font-medium text-foreground text-sm">No se pudo cargar este proyecto</p>
         <p className="text-muted-foreground text-sm">
-          No se cambió nada. Revisa tu conexión e inténtalo otra vez.
+          {t('Nothing was changed. Check your connection and try again.')}
         </p>
       </div>
       <Button className="rounded-full" onClick={onRetry} size="sm" type="button">
-        Reintentar
+        {t('Try again')}
       </Button>
     </div>
   )

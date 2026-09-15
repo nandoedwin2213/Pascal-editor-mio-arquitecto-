@@ -13,6 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from './primitives/dialog'
+import { t } from '../../i18n'
 
 const DUPLICATE_PRESETS: Array<{
   id: LevelDuplicatePreset
@@ -69,7 +70,7 @@ export function LevelDuplicateDialog({
     <Dialog onOpenChange={onOpenChange} open={open}>
       <DialogContent className="sm:max-w-md" showCloseButton={false}>
         <DialogHeader>
-          <DialogTitle>Duplicar nivel</DialogTitle>
+          <DialogTitle>{t('Duplicate Level')}</DialogTitle>
           <DialogDescription>Choose what to copy from {getLevelLabel(level)}.</DialogDescription>
         </DialogHeader>
 
@@ -98,14 +99,14 @@ export function LevelDuplicateDialog({
             onClick={() => onOpenChange(false)}
             type="button"
           >
-            Cancelar
+            {t('Cancel')}
           </button>
           <button
             className="cursor-pointer rounded-md bg-primary px-4 py-2 text-primary-foreground text-sm transition-opacity hover:opacity-90"
             onClick={() => onConfirm(preset)}
             type="button"
           >
-            Duplicar
+            {t('Duplicate')}
           </button>
         </DialogFooter>
       </DialogContent>

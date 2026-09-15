@@ -26,6 +26,7 @@ import {
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
+import { t } from '../../i18n'
 import {
   FLOORPLAN_VIEW_ROTATION_DEG,
   floorplanLocalToWorldPoint,
@@ -881,7 +882,7 @@ export function FloorplanPreview({
         className={className}
         style={{ display: 'grid', placeItems: 'center', background: '#f8fafc', color: '#64748b' }}
       >
-        Esta escena no tiene planos disponibles.
+        {t('No floor plans are available for this scene.')}
       </div>
     )
   }
@@ -981,9 +982,9 @@ export function FloorplanPreview({
             fontWeight: 600,
           }}
         >
-          Nivel
+          {t('Floor')}
           <select
-            aria-label="Nivel"
+            aria-label={t('Floor')}
             onChange={(event) => chooseLevel(event.target.value)}
             style={{
               border: '1px solid rgba(148,163,184,.55)',
@@ -1025,28 +1026,28 @@ export function FloorplanPreview({
         }}
       >
         <button
-          aria-label="Alejar"
+          aria-label={t('Zoom out')}
           onClick={() => zoom(1.2)}
           style={controlStyle}
-          title="Alejar"
+          title={t('Zoom out')}
           type="button"
         >
           <Minus size={16} />
         </button>
         <button
-          aria-label="Ajustar el plano"
+          aria-label={t('Fit floor plan')}
           onClick={() => updateLocalViewBox(fittedViewBox)}
           style={controlStyle}
-          title="Ajustar el plano"
+          title={t('Fit floor plan')}
           type="button"
         >
           <Maximize2 size={15} />
         </button>
         <button
-          aria-label="Acercar"
+          aria-label={t('Zoom in')}
           onClick={() => zoom(0.8)}
           style={controlStyle}
-          title="Acercar"
+          title={t('Zoom in')}
           type="button"
         >
           <Plus size={16} />

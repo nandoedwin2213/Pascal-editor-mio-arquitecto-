@@ -19,6 +19,7 @@ import useEditor, { type GridSnapStep } from '../../../store/use-editor'
 import useFenceCurveDraft from '../../../store/use-fence-curve-draft'
 import { ShortcutToken } from '../primitives/shortcut-token'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../primitives/tooltip'
+import { t } from '../../../i18n'
 
 // One muted container holds every row — passive key hints and interactive chips
 // alike — so the HUD reads as a single panel, not a stack of floating pills. The
@@ -196,7 +197,7 @@ function SnappingChips({ context }: { context: SnapContext }) {
           sfxEmitter.emit('sfx:grid-snap')
         }}
         shortcut="Shift"
-        tooltip="Modo de ajuste — clic o Shift para alternar"
+        tooltip={t('Snapping mode — click or press Shift to cycle')}
       />
       {gridActive ? (
         <ChipRow
@@ -208,7 +209,7 @@ function SnappingChips({ context }: { context: SnapContext }) {
             sfxEmitter.emit('sfx:grid-snap')
           }}
           shortcut="Ctrl"
-          tooltip="Paso de la cuadrícula — clic o Ctrl para alternar"
+          tooltip={t('Grid step — click or tap Ctrl to cycle')}
         />
       ) : null}
     </>
@@ -249,7 +250,7 @@ function ContinuationChip({ context }: { context: ContinuationContext }) {
       label={label}
       onClick={() => cycleContinuation(context)}
       shortcut="C"
-      tooltip="Continuación — clic o C para alternar"
+      tooltip={t('Continuation — click or press C to cycle')}
     />
   )
 }
@@ -274,7 +275,7 @@ function FenceContinuationChips() {
         label={typeLabel}
         onClick={() => setContinuation('fence', isCurved ? 'continuous' : 'curved')}
         shortcut="T"
-        tooltip="Tipo de cerca — clic o T para alternar entre recta y curva"
+        tooltip={t('Fence type — click or press T to switch between straight and curved')}
       />
       <ChipRow
         ariaLabel={`Fence continuation: ${straightLabel}`}
@@ -299,7 +300,7 @@ function FenceContinuationChips() {
       {isCurved && curveStarted ? (
         <ChipRow
           icon="lucide:circle-check"
-          label="Terminar curva (o doble clic)"
+          label={t('Finish curve (or double-click)')}
           shortcut="Enter"
         />
       ) : null}
@@ -329,13 +330,13 @@ function PaintScopeChip() {
   // Nothing to paint with yet (no material picked, not erasing) → the first step
   // is choosing a material, so say that before anything about scope or hovering.
   if (!(paintEraser || hasActivePaintMaterial(activePaintMaterial))) {
-    return <ChipRow icon="lucide:palette" label="Elige un material para pintar" />
+    return <ChipRow icon="lucide:palette" label={t('Select a material to paint')} />
   }
 
   // Not over anything paintable → guide the user to hover, still teaching Shift.
   if (!paintHover) {
     return (
-      <ChipRow icon="lucide:mouse-pointer-click" label="Pasa el cursor por una superficie para pintar" shortcut="Shift" />
+      <ChipRow icon="lucide:mouse-pointer-click" label={t('Hover a surface to paint')} shortcut="Shift" />
     )
   }
 
@@ -362,7 +363,7 @@ function PaintScopeChip() {
       label={`Paint: ${paintScopeLabel(effective, paintHover)}`}
       onClick={() => cyclePaintScope()}
       shortcut="Shift"
-      tooltip="Alcance de pintura — clic o Shift para alternar"
+      tooltip={t('Paint scope — click or press Shift to cycle')}
     />
   )
 }

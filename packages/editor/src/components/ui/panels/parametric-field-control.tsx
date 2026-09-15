@@ -5,6 +5,7 @@ import { SegmentedControl } from '../controls/segmented-control'
 import { SliderControl } from '../controls/slider-control'
 import { ToggleControl } from '../controls/toggle-control'
 import { precisionForStep, prettifyEnumValue, prettifyKey } from './parametric-field-utils'
+import { t } from '../../../i18n'
 
 interface ParametricFieldControlProps {
   field: ParamField<AnyNode>
@@ -88,7 +89,7 @@ export function ParametricFieldControl({
           >
             {mixed && (
               <option disabled value="">
-                Variado
+                {t('Mixed')}
               </option>
             )}
             {field.options.map((opt) => (

@@ -19,6 +19,7 @@ import { Button } from '../primitives/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../primitives/tooltip'
 import { MaterialPicker } from './material-picker'
 import { SceneMaterialList } from './scene-material-list'
+import { t } from '../../../i18n'
 
 /**
  * Material picker for paint mode. Embedders render this wherever paint controls
@@ -97,7 +98,7 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
           variant={paintEraser ? 'default' : 'outline'}
         >
           <Eraser />
-          Borrar
+          {t('Erase')}
         </Button>
         <Button
           className="flex-1"
@@ -107,7 +108,7 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
           variant="outline"
         >
           <RotateCcw />
-          Restablecer todo
+          {t('Reset all')}
         </Button>
       </div>
 
@@ -128,12 +129,12 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
       <div className="mt-2 shrink-0 space-y-1.5 border-border/60 border-t pt-2">
         <div className="flex items-center justify-between">
           <span className="font-medium text-muted-foreground text-xs uppercase tracking-[0.12em]">
-            Materiales de la escena
+            {t('Scene materials')}
           </span>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                aria-label="Agregar material"
+                aria-label={t('Add material')}
                 onClick={createCustomMaterial}
                 size="icon-sm"
                 type="button"
@@ -142,7 +143,7 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
                 <Plus />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Agregar material</TooltipContent>
+            <TooltipContent>{t('Add material')}</TooltipContent>
           </Tooltip>
         </div>
         <div className="subtle-scrollbar max-h-56 overflow-y-auto">
@@ -150,7 +151,7 @@ export function MaterialPaintPanel({ onCreateMaterialRequest }: MaterialPaintPan
             <SceneMaterialList autoEditId={autoEditMaterialId} />
           ) : (
             <p className="px-0.5 py-1 text-muted-foreground text-xs">
-              Aún no hay materiales propios: agrega uno con +.
+              {t('No custom materials yet — add one with +.')}
             </p>
           )}
         </div>

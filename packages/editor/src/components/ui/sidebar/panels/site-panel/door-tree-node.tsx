@@ -9,6 +9,7 @@ import useEditor from './../../../../../store/use-editor'
 import { InlineRenameInput } from './inline-rename-input'
 import { focusTreeNode, handleTreeSelection, TreeNodeWrapper } from './tree-node'
 import { TreeNodeActions } from './tree-node-actions'
+import { t } from '../../../../../i18n'
 
 interface DoorTreeNodeProps {
   nodeId: AnyNodeId
@@ -66,7 +67,7 @@ export const DoorTreeNode = memo(function DoorTreeNode({
       isVisible={isVisible}
       label={
         <InlineRenameInput
-          defaultName="Puerta"
+          defaultName={t('Door')}
           isEditing={isEditing}
           nodeId={nodeId as AnyNodeId}
           onStartEditing={handleStartEditing}

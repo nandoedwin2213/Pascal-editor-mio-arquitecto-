@@ -25,6 +25,7 @@ import {
 } from './../../../components/ui/primitives/tooltip'
 import { useIsMobile } from './../../../hooks/use-mobile'
 import { cn } from './../../../lib/utils'
+import { t } from '../../../i18n'
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state'
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -279,8 +280,8 @@ function Sidebar({
           }
         >
           <SheetHeader className="sr-only">
-            <SheetTitle>Barra lateral</SheetTitle>
-            <SheetDescription>Muestra la barra lateral en móvil.</SheetDescription>
+            <SheetTitle>{t('Sidebar')}</SheetTitle>
+            <SheetDescription>{t('Displays the mobile sidebar.')}</SheetDescription>
           </SheetHeader>
           <div className="flex h-full w-full flex-col">{children}</div>
         </SheetContent>
@@ -356,7 +357,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
       {...props}
     >
       <PanelLeftIcon />
-      <span className="sr-only">Mostrar u ocultar la barra lateral</span>
+      <span className="sr-only">{t('Toggle Sidebar')}</span>
     </Button>
   )
 }
@@ -366,7 +367,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
 
   return (
     <button
-      aria-label="Mostrar u ocultar la barra lateral"
+      aria-label={t('Toggle Sidebar')}
       className={cn(
         'absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex',
         'in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize',
@@ -380,7 +381,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
       data-slot="sidebar-rail"
       onClick={toggleSidebar}
       tabIndex={-1}
-      title="Mostrar u ocultar la barra lateral"
+      title={t('Toggle Sidebar')}
       {...props}
     />
   )

@@ -16,6 +16,7 @@ import {
 import { Plus } from 'lucide-react'
 import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import { triggerSFX } from '../../../lib/sfx-bus'
+import { t } from '../../../i18n'
 
 export type MaterialSourceFilter = MaterialSource
 
@@ -161,7 +162,7 @@ export function MaterialPicker({
               <Plus className="size-5 text-muted-foreground group-hover:text-foreground" />
             </div>
             <span className="truncate px-0.5 text-left font-medium text-[11px] text-muted-foreground group-hover:text-foreground">
-              Material nuevo
+              {t('New material')}
             </span>
           </button>
         ) : null}

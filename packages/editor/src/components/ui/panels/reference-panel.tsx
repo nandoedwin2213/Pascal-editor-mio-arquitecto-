@@ -29,16 +29,17 @@ import { ActionButton, ActionGroup } from '../controls/action-button'
 import { PanelSection } from '../controls/panel-section'
 import { SliderControl } from '../controls/slider-control'
 import { PanelWrapper } from './panel-wrapper'
+import { t } from '../../../i18n'
 
 type ReferenceNode = ScanNode | GuideNode
 
 function getScaleStatus(guide: GuideNode, scaleReferenceVisible: boolean) {
   const reference = guide.scaleReference
   if (!reference) {
-    return 'Sin calibrar'
+    return t('Uncalibrated')
   }
 
-  return `${scaleReferenceVisible ? 'Escalada' : 'Escalada (oculta)'} · ${reference.label}`
+  return `${scaleReferenceVisible ? t('Scaled') : t('Scaled (hidden)')} · ${reference.label}`
 }
 
 export function ReferencePanel() {
@@ -85,7 +86,7 @@ export function ReferencePanel() {
       }
 
       if (!file.type.startsWith('image/')) {
-        setReplaceError('Elige una imagen PNG, JPEG o WebP.')
+        setReplaceError(t('Choose a PNG, JPEG, or WebP image.'))
         return
       }
 
@@ -107,7 +108,7 @@ export function ReferencePanel() {
         // so it can be resized/rotated right away.
         setGuideLocked(selectedReferenceId, false)
       } catch {
-        setReplaceError('No se pudo reemplazar esa imagen.')
+        setReplaceError(t('Could not replace that image.'))
       } finally {
         setIsReplacing(false)
       }
@@ -179,12 +180,12 @@ export function ReferencePanel() {
   return (
     <PanelWrapper
       onClose={handleClose}
-      title={node.name || (isScan ? 'Captura' : 'Imagen guía')}
+      title={node.name || (isScan ? t('Capture') : t('Guide Image'))}
       width={300}
     >
       {!isScan && (
         <>
-          <PanelSection title="Imagen">
+          <PanelSection title={t('Image')}>
             <input
               accept="image/*"
               className="hidden"
@@ -203,13 +204,13 @@ export function ReferencePanel() {
               <ActionButton
                 disabled={isReplacing}
                 icon={<Upload className="h-3.5 w-3.5" />}
-                label={isReplacing ? 'Reemplazando…' : 'Reemplazar'}
+                label={isReplacing ? t('Replacing...') : t('Replace')}
                 onClick={() => replaceInputRef.current?.click()}
               />
               <ActionButton
                 className="text-destructive hover:bg-destructive/10"
                 icon={<Trash2 className="h-3.5 w-3.5" />}
-                label="Eliminar"
+                label={t('Delete')}
                 onClick={handleDeleteGuide}
               />
             </ActionGroup>
@@ -223,7 +224,7 @@ export function ReferencePanel() {
                     <Eye className="h-3.5 w-3.5" />
                   )
                 }
-                label={node.visible === false ? 'Mostrar' : 'Ocultar'}
+                label={node.visible === false ? t('Show') : t('Hide')}
                 onClick={() => handleUpdate({ visible: node.visible === false })}
               />
               <ActionButton
@@ -234,7 +235,7 @@ export function ReferencePanel() {
                     <Unlock className="h-3.5 w-3.5" />
                   )
                 }
-                label={guideLocked ? 'Desbloquear' : 'Bloquear'}
+                label={guideLocked ? t('Unlock') : t('Lock')}
                 onClick={() => setGuideLocked(node.id, !guideLocked)}
               />
             </ActionGroup>
@@ -247,12 +248,12 @@ export function ReferencePanel() {
 
             {isAssetMissing && (
               <div className="rounded-md border border-amber-500/35 bg-amber-500/10 px-2 py-1.5 text-amber-700 text-xs dark:text-amber-300">
-                La imagen superpuesta no está disponible. Reemplázala para restaurarla.
+                {t('Overlay image unavailable. Replace the image to restore it.')}
               </div>
             )}
           </PanelSection>
 
-          <PanelSection title="Escala de referencia">
+          <PanelSection title={t('Reference Scale')}>
             <div className="flex items-center gap-2 rounded-md border border-border/50 bg-background/40 px-2.5 py-2 text-sm">
               <Ruler
                 className={cn(
@@ -266,8 +267,8 @@ export function ReferencePanel() {
             {!node.scaleReference && (
               <p className="px-0.5 text-muted-foreground text-xs leading-snug">
                 {isScaleFlowActive
-                  ? 'Marca los dos extremos de una distancia conocida en el plano y escribe su medida real.'
-                  : 'Traza una línea sobre una medida conocida del plano y escribe su longitud real para escalar la imagen con exactitud.'}
+                  ? t('Click both ends of a known distance on the plan, then type its real length.')
+                  : t('Draw a line over a known dimension on the plan, then type its real length to scale the image exactly.')}
               </p>
             )}
 
@@ -292,11 +293,11 @@ export function ReferencePanel() {
             {node.scaleReference && (
               <ActionGroup>
                 <ActionButton
-                  label={scaleReferenceVisible ? 'Ocultar escala' : 'Mostrar escala'}
+                  label={scaleReferenceVisible ? t('Hide Scale') : t('Show Scale')}
                   onClick={() => setGuideScaleReferenceVisible(node.id, !scaleReferenceVisible)}
                 />
                 <ActionButton
-                  label="Borrar escala"
+                  label={t('Clear Scale')}
                   onClick={() => {
                     handleUpdate({ scaleReference: null } as Partial<GuideNode>)
                     // Calibrating auto-locked the guide; clearing the scale
@@ -308,11 +309,11 @@ export function ReferencePanel() {
             )}
           </PanelSection>
 
-          <PanelSection title="Acciones rápidas">
+          <PanelSection title={t('Quick Actions')}>
             <ActionGroup>
               <ActionButton
                 icon={<LocateFixed className="h-3.5 w-3.5" />}
-                label="Centrar"
+                label={t('Center')}
                 onClick={() =>
                   handleUpdate({
                     position: [0, node.position[1], 0],
@@ -321,7 +322,7 @@ export function ReferencePanel() {
               />
               <ActionButton
                 icon={<RotateCcw className="h-3.5 w-3.5" />}
-                label="Restablecer rotación"
+                label={t('Reset Rotation')}
                 onClick={() =>
                   handleUpdate({
                     rotation: [node.rotation[0], 0, node.rotation[2]],
@@ -332,7 +333,7 @@ export function ReferencePanel() {
             <ActionGroup>
               <ActionButton
                 icon={<Ruler className="h-3.5 w-3.5" />}
-                label="Restablecer escala de la imagen"
+                label={t('Reset Image Scale')}
                 onClick={() => handleUpdate({ scale: 1 } as Partial<GuideNode>)}
               />
             </ActionGroup>
@@ -341,11 +342,11 @@ export function ReferencePanel() {
       )}
 
       {isScan && (
-        <PanelSection title="Captura">
+        <PanelSection title={t('Capture')}>
           <ActionGroup>
             <ActionButton
               icon={<Move className="h-3.5 w-3.5" />}
-              label="Mover"
+              label={t('Move')}
               onClick={handleMoveScan}
             />
             <ActionButton
@@ -356,14 +357,14 @@ export function ReferencePanel() {
                   <Eye className="h-3.5 w-3.5" />
                 )
               }
-              label={node.visible === false ? 'Mostrar' : 'Ocultar'}
+              label={node.visible === false ? t('Show') : t('Hide')}
               onClick={() => handleUpdate({ visible: node.visible === false })}
             />
           </ActionGroup>
         </PanelSection>
       )}
 
-      <PanelSection title="Posición">
+      <PanelSection title={t('Position')}>
         <SliderControl
           label={
             <>
@@ -420,7 +421,7 @@ export function ReferencePanel() {
         />
       </PanelSection>
 
-      <PanelSection title="Rotación">
+      <PanelSection title={t('Rotation')}>
         <SliderControl
           label={
             <>
@@ -460,7 +461,7 @@ export function ReferencePanel() {
         </div>
       </PanelSection>
 
-      <PanelSection title="Escala y opacidad">
+      <PanelSection title={t('Scale & Opacity')}>
         <SliderControl
           label={
             <>
@@ -480,7 +481,7 @@ export function ReferencePanel() {
         />
 
         <SliderControl
-          label="Opacidad"
+          label={t('Opacity')}
           max={100}
           min={0}
           onChange={(v) => handleUpdate({ opacity: v })}

@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogTitle } from './../../../components/ui/pri
 import { getLevelDisplayName } from '@pascal-app/core'
 import { useCommandRegistry } from '../../../store/use-command-registry'
 import { usePaletteViewRegistry } from '../../../store/use-palette-view-registry'
+import { t } from '../../../i18n'
 
 // ---------------------------------------------------------------------------
 // Open + navigation state store
@@ -338,7 +339,7 @@ export function CommandPalette({ emptyAction }: { emptyAction?: CommandPaletteEm
             <Command.List className="max-h-100 overflow-y-auto p-1.5">
               {(!emptyAction || page) && (
                 <Command.Empty className="py-8 text-center text-muted-foreground text-sm">
-                  No se encontraron comandos.
+                  {t('No commands found.')}
                 </Command.Empty>
               )}
               {emptyAction && !page && <EmptyActionItem action={emptyAction} />}

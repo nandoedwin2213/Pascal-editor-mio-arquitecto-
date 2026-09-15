@@ -25,6 +25,7 @@ import useEditor from '../../../store/use-editor'
 import useFloorplanMode from '../../../store/use-floorplan-mode'
 import { Popover, PopoverContent, PopoverTrigger } from '../primitives/popover'
 import { ActionButton } from './action-button'
+import { t } from '../../../i18n'
 
 const measurementOptions = [
   { kind: 'distance', label: 'Distance', icon: Ruler },
@@ -169,7 +170,7 @@ export function MeasurementControl() {
           <button
             aria-expanded={isOpen}
             aria-haspopup="menu"
-            aria-label="Opciones de medición"
+            aria-label={t('Measurement options')}
             className={cn(
               'flex h-11 w-6 items-center justify-center rounded-r-lg text-muted-foreground transition-colors',
               isOpen
@@ -192,7 +193,7 @@ export function MeasurementControl() {
         side="top"
         sideOffset={14}
       >
-        <div aria-label="Tipo de medición" className="space-y-1" role="menu">
+        <div aria-label={t('Measurement type')} className="space-y-1" role="menu">
           {measurementMenuOptions.map((option) => {
             const OptionIcon = option.icon
             const isSmart = option.kind === 'smart'
@@ -228,7 +229,7 @@ export function MeasurementControl() {
             <>
               <div className="my-1.5 h-px bg-border/60" />
               <div className="px-2.5 pt-1 pb-0.5 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider">
-                Plano
+                {t('Floor plan')}
               </div>
 
               {constructionDimensionOptions.map((option) => {

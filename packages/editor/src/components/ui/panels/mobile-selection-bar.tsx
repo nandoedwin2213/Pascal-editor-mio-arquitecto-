@@ -6,6 +6,7 @@ import Image from 'next/image'
 import type { MouseEventHandler } from 'react'
 import { cn } from '../../../lib/utils'
 import { getNodeDisplay } from './node-display'
+import { t } from '../../../i18n'
 
 interface MobileSelectionBarProps {
   node: AnyNode | null
@@ -57,7 +58,7 @@ export function MobileSelectionBar({
 
       <div className="flex items-center gap-0.5 border-border/40 border-l pl-1">
         <button
-          aria-label="Mover"
+          aria-label={t('Move')}
           className={ACTION_BTN}
           onClick={(e) => {
             stop(e)
@@ -68,7 +69,7 @@ export function MobileSelectionBar({
           <Move className="h-4 w-4" />
         </button>
         <button
-          aria-label="Duplicar"
+          aria-label={t('Duplicate')}
           className={ACTION_BTN}
           onClick={(e) => {
             stop(e)
@@ -79,7 +80,7 @@ export function MobileSelectionBar({
           <Copy className="h-4 w-4" />
         </button>
         <button
-          aria-label="Eliminar"
+          aria-label={t('Delete')}
           className={cn(ACTION_BTN, 'hover:bg-red-500/15 hover:text-red-400')}
           onClick={(e) => {
             stop(e)
@@ -90,7 +91,7 @@ export function MobileSelectionBar({
           <Trash2 className="h-4 w-4" />
         </button>
         <button
-          aria-label="Editar propiedades"
+          aria-label={t('Edit properties')}
           className={ACTION_BTN}
           onClick={(e) => {
             stop(e)

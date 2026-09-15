@@ -33,6 +33,8 @@ import { AudioSettingsDialog } from './audio-settings-dialog'
 import { KeyboardShortcutsDialog } from './keyboard-shortcuts-dialog'
 import { LoadBuildDialog, type PendingImport } from './load-build-dialog'
 import { PrintExportButton } from './print-export-button'
+import { t } from '../../../../../i18n'
+import { useLanguage } from '../../../../../store/use-language'
 
 type SceneNode = Record<string, unknown> & {
   id?: unknown
@@ -200,6 +202,8 @@ export function SettingsPanel({
   const shadows = useViewer((state) => state.shadows)
   const setPhase = useEditor((state) => state.setPhase)
   const floorplanMode = useFloorplanMode((state) => state.mode)
+  const language = useLanguage((state) => state.language)
+  const setLanguage = useLanguage((state) => state.setLanguage)
   const [isGeneratingThumbnail, setIsGeneratingThumbnail] = useState(false)
   const [exportOnlyVisible, setExportOnlyVisible] = useState(true)
   const [pendingImport, setPendingImport] = useState<PendingImport | null>(null)
@@ -270,7 +274,7 @@ export function SettingsPanel({
               {
                 severity: 'error',
                 code: 'invalid_json',
-                message: 'No se pudo interpretar el archivo como JSON.',
+                message: t('File could not be parsed as JSON.'),
               },
             ],
             warnings: [],
@@ -362,11 +366,11 @@ export function SettingsPanel({
     <div className="flex flex-col gap-6 p-3">
       {projectId && (
         <div className="space-y-2">
-          <label className="font-medium text-muted-foreground text-xs uppercase">Proyecto</label>
+          <label className="font-medium text-muted-foreground text-xs uppercase">{t('Project')}</label>
           <div className="font-medium text-sm">ID del proyecto</div>
           <div className="flex items-center gap-2">
             <Input
-              aria-label="ID del proyecto"
+              aria-label={t('Project ID')}
               className="font-mono text-xs"
               readOnly
               value={projectId}
@@ -387,10 +391,10 @@ export function SettingsPanel({
                 <Copy className="size-3.5" />
               )}
               {projectIdCopyState === 'copied'
-                ? 'Copiado'
+                ? t('Copied')
                 : projectIdCopyState === 'error'
-                  ? 'Reintentar'
-                  : 'Copiar'}
+                  ? t('Try again')
+                  : t('Copy')}
             </Button>
           </div>
         </div>
@@ -399,12 +403,14 @@ export function SettingsPanel({
       {/* Visibility Section (only for cloud projects) */}
       {projectId && !isLocalProject && (
         <div className="space-y-3">
-          <label className="font-medium text-muted-foreground text-xs uppercase">Visibilidad</label>
+          <label className="font-medium text-muted-foreground text-xs uppercase">
+            {t('Visibility')}
+          </label>
           <div className="flex items-center justify-between">
             <div>
-              <div className="font-medium text-sm">Público</div>
+              <div className="font-medium text-sm">{t('Public')}</div>
               <div className="text-muted-foreground text-xs">
-                {projectVisibility?.isPrivate ? 'Solo tú puedes' : 'Cualquiera puede'} ver el proyecto
+                {projectVisibility?.isPrivate ? t('Only you can view') : t('Anyone can view')}
               </div>
             </div>
             <Switch
@@ -414,8 +420,8 @@ export function SettingsPanel({
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <div className="font-medium text-sm">Mostrar escaneos 3D</div>
-              <div className="text-muted-foreground text-xs">Visible para el público</div>
+              <div className="font-medium text-sm">{t('Show 3D Scans')}</div>
+              <div className="text-muted-foreground text-xs">{t('Visible to public')}</div>
             </div>
             <Switch
               checked={projectVisibility?.showScansPublic ?? true}
@@ -424,8 +430,8 @@ export function SettingsPanel({
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <div className="font-medium text-sm">Mostrar planos</div>
-              <div className="text-muted-foreground text-xs">Visible para el público</div>
+              <div className="font-medium text-sm">{t('Show Floorplans')}</div>
+              <div className="text-muted-foreground text-xs">{t('Visible to public')}</div>
             </div>
             <Switch
               checked={projectVisibility?.showGuidesPublic ?? true}
@@ -447,7 +453,7 @@ export function SettingsPanel({
 
       {/* Export Section */}
       <div className="space-y-4">
-        <label className="font-medium text-muted-foreground text-xs uppercase">Exportar</label>
+        <label className="font-medium text-muted-foreground text-xs uppercase">{t('Export')}</label>
 
         <div className="space-y-2">
           <div className="font-medium text-muted-foreground text-xs">Modelo 3D</div>
@@ -455,7 +461,7 @@ export function SettingsPanel({
             <div>
               <div className="font-medium text-sm">Solo elementos visibles</div>
               <div className="text-muted-foreground text-xs">
-                Excluir mobiliario y demás elementos ocultos de la escena
+                {t('Exclude hidden furniture and other hidden scene nodes')}
               </div>
             </div>
             <Switch checked={exportOnlyVisible} onCheckedChange={setExportOnlyVisible} />
@@ -490,8 +496,8 @@ export function SettingsPanel({
 
         <div className="space-y-2">
           <div className="flex items-center justify-between font-medium text-muted-foreground text-xs">
-            <span>Plano</span>
-            <span>{floorplanMode === 'default' ? 'Modo estándar' : 'Modo experto'}</span>
+            <span>{t('Floor plan')}</span>
+            <span>{floorplanMode === 'default' ? t('Default mode') : t('Expert mode')}</span>
           </div>
           <Button
             className="w-full justify-start gap-2"
@@ -499,7 +505,7 @@ export function SettingsPanel({
             variant="outline"
           >
             <MapIcon className="size-4" />
-            Plano completo
+            {t('Full floor plan')}
           </Button>
           <Button
             className="w-full justify-start gap-2"
@@ -507,7 +513,7 @@ export function SettingsPanel({
             variant="outline"
           >
             <MapIcon className="size-4" />
-            Solo estructura
+            {t('Structure only')}
           </Button>
         </div>
       </div>
@@ -515,7 +521,7 @@ export function SettingsPanel({
       {/* Thumbnail Section (only for cloud projects) */}
       {projectId && !isLocalProject && (
         <div className="space-y-2">
-          <label className="font-medium text-muted-foreground text-xs uppercase">Miniatura</label>
+          <label className="font-medium text-muted-foreground text-xs uppercase">{t('Thumbnail')}</label>
           <Button
             className="w-full justify-start gap-2"
             disabled={isGeneratingThumbnail}
@@ -523,18 +529,18 @@ export function SettingsPanel({
             variant="outline"
           >
             <Camera className="size-4" />
-            {isGeneratingThumbnail ? 'Generando…' : 'Generar miniatura'}
+            {isGeneratingThumbnail ? t('Generating...') : t('Generate Thumbnail')}
           </Button>
         </div>
       )}
 
       {/* Save/Load Section */}
       <div className="space-y-2">
-        <label className="font-medium text-muted-foreground text-xs uppercase">Guardar y cargar</label>
+        <label className="font-medium text-muted-foreground text-xs uppercase">{t('Save & Load')}</label>
 
         <Button className="w-full justify-start gap-2" onClick={handleSaveBuild} variant="outline">
           <Save className="size-4" />
-          Guardar proyecto
+          {t('Save Build')}
         </Button>
 
         <Button
@@ -543,7 +549,7 @@ export function SettingsPanel({
           variant="outline"
         >
           <Upload className="size-4" />
-          Cargar proyecto
+          {t('Load Build')}
         </Button>
 
         <input
@@ -561,29 +567,56 @@ export function SettingsPanel({
         />
       </div>
 
+      {/* Language Section */}
+      <div className="space-y-2">
+        <label className="font-medium text-muted-foreground text-xs uppercase">
+          {t('Language')}
+        </label>
+        <div className="flex gap-2">
+          <Button
+            className="h-7 px-3 text-xs"
+            onClick={() => setLanguage('es')}
+            variant={language === 'es' ? 'default' : 'outline'}
+          >
+            Español
+          </Button>
+          <Button
+            className="h-7 px-3 text-xs"
+            onClick={() => setLanguage('en')}
+            variant={language === 'en' ? 'default' : 'outline'}
+          >
+            English
+          </Button>
+        </div>
+      </div>
+
       {/* Audio Section */}
       <div className="space-y-2">
-        <label className="font-medium text-muted-foreground text-xs uppercase">Sonido</label>
+        <label className="font-medium text-muted-foreground text-xs uppercase">{t('Audio')}</label>
         <AudioSettingsDialog />
       </div>
 
       {/* Keyboard Section */}
       <div className="space-y-2">
-        <label className="font-medium text-muted-foreground text-xs uppercase">Teclado</label>
+        <label className="font-medium text-muted-foreground text-xs uppercase">
+          {t('Keyboard')}
+        </label>
         <KeyboardShortcutsDialog />
       </div>
 
       {/* Scene Graph */}
       <div className="space-y-1">
-        <label className="font-medium text-muted-foreground text-xs uppercase">Grafo de escena</label>
+        <label className="font-medium text-muted-foreground text-xs uppercase">
+          {t('Scene Graph')}
+        </label>
         <Dialog>
           <DialogTrigger asChild>
             <Button className="h-auto justify-start p-0 text-sm" variant="link">
-              Explorar grafo de escena
+              {t('Explore scene graph')}
             </Button>
           </DialogTrigger>
           <DialogContent className="h-[80vh] max-w-[95vw] gap-0 overflow-hidden border-0 bg-[#1e1e1e] p-0 shadow-none sm:max-w-5xl">
-            <DialogTitle className="sr-only">Grafo de escena</DialogTitle>
+            <DialogTitle className="sr-only">{t('Scene Graph')}</DialogTitle>
             <div
               className="flex h-full min-h-0 w-full min-w-0 *:h-full *:w-full *:overflow-y-auto"
               onContextMenuCapture={blockSceneGraphMutations}
@@ -601,7 +634,7 @@ export function SettingsPanel({
 
       {/* Danger Zone */}
       <div className="space-y-2">
-        <label className="font-medium text-destructive text-xs uppercase">Zona de riesgo</label>
+        <label className="font-medium text-destructive text-xs uppercase">{t('Danger Zone')}</label>
 
         <Button
           className="w-full justify-start gap-2"
@@ -609,7 +642,7 @@ export function SettingsPanel({
           variant="destructive"
         >
           <Trash2 className="size-4" />
-          Borrar y empezar de nuevo
+          {t('Clear & Start New')}
         </Button>
       </div>
     </div>

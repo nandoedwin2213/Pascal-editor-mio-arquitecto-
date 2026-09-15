@@ -3,6 +3,7 @@
 import type { MaterialProperties, MaterialSchema } from '@pascal-app/core'
 import { Input } from '../primitives/input'
 import { SliderControl } from './slider-control'
+import { t } from '../../../i18n'
 
 const DEFAULT_MATERIAL_PROPERTIES: MaterialProperties = {
   color: '#ffffff',
@@ -58,7 +59,7 @@ export function MaterialPropertiesEditor({
       </div>
 
       <SliderControl
-        label="Rugosidad"
+        label={t('Roughness')}
         max={1}
         min={0}
         onChange={(value) => updateMaterial({ roughness: value })}
@@ -68,7 +69,7 @@ export function MaterialPropertiesEditor({
       />
 
       <SliderControl
-        label="Metalicidad"
+        label={t('Metalness')}
         max={1}
         min={0}
         onChange={(value) => updateMaterial({ metalness: value })}
@@ -78,7 +79,7 @@ export function MaterialPropertiesEditor({
       />
 
       <SliderControl
-        label="Opacidad"
+        label={t('Opacity')}
         max={1}
         min={0}
         onChange={(value) => updateMaterial({ opacity: value }, value < 1 || currentProps.transparent)}
@@ -89,7 +90,7 @@ export function MaterialPropertiesEditor({
 
       <div className="space-y-2">
         <label className="block font-medium text-muted-foreground text-xs uppercase tracking-[0.12em]">
-          Cara
+          {t('Side')}
         </label>
         <select
           className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30"

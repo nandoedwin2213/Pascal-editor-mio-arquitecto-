@@ -20,6 +20,7 @@ import {
 } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { t } from '../../i18n'
 import { measurementPolygonLabelAnchor } from '../../lib/measurement-label'
 import {
   buildMeasurementAngleArcPoints,
@@ -696,14 +697,14 @@ function FloorplanExtrusionControl({
           }}
         >
           <label className="sr-only" htmlFor="measurement-extrusion-height">
-            Altura de extrusión
+            {t('Extrusion height')}
           </label>
           <div className="relative min-w-0 flex-1">
             <span className="pointer-events-none absolute inset-y-0 left-2 flex items-center font-medium text-muted-foreground text-xs">
               H
             </span>
             <input
-              aria-label="Altura de extrusión"
+              aria-label={t('Extrusion height')}
               className="h-8 w-full rounded-md border border-border bg-background pr-7 pl-6 text-sm outline-none focus:border-cyan-400"
               id="measurement-extrusion-height"
               inputMode="decimal"
@@ -744,7 +745,7 @@ function FloorplanExtrusionControl({
             onClick={commit}
             type="button"
           >
-            Crear
+            {t('Create')}
           </button>
         </div>
       </foreignObject>

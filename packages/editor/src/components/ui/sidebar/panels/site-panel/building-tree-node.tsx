@@ -8,6 +8,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from './../../../../../components/ui/primitives/tooltip'
+import { t } from '../../../../../i18n'
 import { focusTreeNode, TreeNode, TreeNodeWrapper } from './tree-node'
 import { TreeNodeActions } from './tree-node-actions'
 
@@ -64,7 +65,7 @@ export const BuildingTreeNode = memo(function BuildingTreeNode({
                 <Plus className="h-3 w-3" />
               </button>
             </TooltipTrigger>
-            <TooltipContent side="right">Agregar nivel</TooltipContent>
+            <TooltipContent side="right">{t('Add level')}</TooltipContent>
           </Tooltip>
         </div>
       }

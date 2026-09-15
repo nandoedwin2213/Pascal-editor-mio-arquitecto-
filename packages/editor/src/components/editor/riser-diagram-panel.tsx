@@ -4,6 +4,7 @@ import { type AnyNodeId, buildRiserDiagram, useScene } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
 import { X } from 'lucide-react'
 import { useMemo } from 'react'
+import { t } from '../../i18n'
 import useEditor from '../../store/use-editor'
 
 const WASTE_COLOR = '#0ea5e9'
@@ -74,7 +75,7 @@ function RiserDiagramContent() {
           <svg
             height={Math.max(height, 120)}
             role="img"
-            aria-label="Diagrama de montantes DWV"
+            aria-label={t('DWV riser diagram')}
             viewBox={`0 0 ${Math.max(width, 200)} ${Math.max(height, 120)}`}
             width="100%"
           >
@@ -128,8 +129,7 @@ function RiserDiagramContent() {
           </svg>
         ) : (
           <div className="flex h-32 items-center justify-center px-6 text-center text-muted-foreground text-sm">
-            Aún no hay tuberías de desagüe ni de ventilación. Dibuja instalaciones para ver el
-            diagrama.
+            {t('No drain, waste, or vent pipes yet. Draw plumbing to see the riser diagram.')}
           </div>
         )}
       </div>
