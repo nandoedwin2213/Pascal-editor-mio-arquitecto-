@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { resolveDefaultDatabasePath } from '@pascal-app/mcp/storage'
 
@@ -29,4 +29,9 @@ export async function readSceneThumbnail(sceneId: string): Promise<Buffer | null
   } catch {
     return null
   }
+}
+
+export async function deleteSceneThumbnail(sceneId: string): Promise<void> {
+  if (!isValidSceneId(sceneId)) return
+  await rm(thumbnailPath(sceneId), { force: true })
 }

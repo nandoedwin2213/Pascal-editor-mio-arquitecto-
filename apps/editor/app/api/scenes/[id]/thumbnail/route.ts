@@ -22,7 +22,7 @@ export function OPTIONS(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
-  const guard = guardSceneApiRequest(request)
+  const guard = guardSceneApiRequest(request, { skipRateLimit: true })
   if (guard) return guard
 
   const { id } = await params
@@ -53,6 +53,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const { id } = await params
   if (!isValidSceneId(id)) {
     return sceneApiJson(request, { error: 'invalid_request' }, { status: 400 })
+  }
+
+  const declaredLength = Number(request.headers.get('content-length') ?? Number.NaN)
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_THUMBNAIL_BYTES) {
+    return sceneApiJson(request, { error: 'payload_too_large' }, { status: 413 })
   }
 
   const operations = await getSceneOperations()

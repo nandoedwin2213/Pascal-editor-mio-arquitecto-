@@ -6,7 +6,16 @@ import { useState } from 'react'
  * Thumbnails are captured on save and stored next to the scene database, so
  * they are only available once a scene has been edited with a visible viewport.
  */
-export function SceneThumbnail({ sceneId, name }: { sceneId: string; name: string }) {
+export function SceneThumbnail({
+  sceneId,
+  name,
+  fallbackUrl,
+}: {
+  sceneId: string
+  name: string
+  fallbackUrl?: string | null
+}) {
+  const [src, setSrc] = useState(`/api/scenes/${sceneId}/thumbnail`)
   const [failed, setFailed] = useState(false)
 
   if (failed) {
@@ -17,8 +26,14 @@ export function SceneThumbnail({ sceneId, name }: { sceneId: string; name: strin
     <img
       alt={name}
       className="h-full w-full object-cover"
-      onError={() => setFailed(true)}
-      src={`/api/scenes/${sceneId}/thumbnail`}
+      onError={() => {
+        if (fallbackUrl && src !== fallbackUrl) {
+          setSrc(fallbackUrl)
+          return
+        }
+        setFailed(true)
+      }}
+      src={src}
     />
   )
 }

@@ -98,7 +98,11 @@ export default async function ScenesPage() {
                   href={`/scene/${scene.id}`}
                 >
                   <div className="flex aspect-video items-center justify-center overflow-hidden rounded-lg bg-accent/30">
-                    <SceneThumbnail name={scene.name} sceneId={scene.id} />
+                    <SceneThumbnail
+                      fallbackUrl={scene.thumbnailUrl}
+                      name={scene.name}
+                      sceneId={scene.id}
+                    />
                   </div>
                   <div className="mt-3">
                     <h2 className="truncate font-semibold text-sm group-hover:text-foreground">
