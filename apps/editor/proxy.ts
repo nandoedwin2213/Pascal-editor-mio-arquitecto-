@@ -4,6 +4,9 @@ import { ACCESS_COOKIE, accessPassword, accessToken, safeEqual } from '@/lib/acc
 /** Public surface: landing, sign-in, legal pages and health check. */
 const PUBLIC_PATHS = ['/acceso', '/api/access', '/api/health', '/terms', '/privacy']
 
+/** Static files under `public/` (icons, catalog, fonts…) — also fetched internally by the image optimizer. */
+const STATIC_FILE = /\.[a-z0-9]+$/i
+
 export async function proxy(request: NextRequest) {
   const password = accessPassword()
   if (!password) return NextResponse.next()
@@ -11,6 +14,7 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   if (
     pathname === '/' ||
+    (!pathname.startsWith('/api/') && STATIC_FILE.test(pathname)) ||
     PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))
   ) {
     return NextResponse.next()
