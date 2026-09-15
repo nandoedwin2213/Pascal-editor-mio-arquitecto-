@@ -367,7 +367,7 @@ export function SettingsPanel({
       {projectId && (
         <div className="space-y-2">
           <label className="font-medium text-muted-foreground text-xs uppercase">{t('Project')}</label>
-          <div className="font-medium text-sm">ID del proyecto</div>
+          <div className="font-medium text-sm">{t('Project ID')}</div>
           <div className="flex items-center gap-2">
             <Input
               aria-label={t('Project ID')}
@@ -377,7 +377,7 @@ export function SettingsPanel({
             />
             <Button
               aria-label={
-                projectIdCopyState === 'copied' ? 'ID del proyecto copiado' : 'Copiar ID del proyecto'
+                projectIdCopyState === 'copied' ? t('Project ID copied') : t('Copy project ID')
               }
               className="rounded-full"
               onClick={() => void handleCopyProjectId()}
@@ -440,8 +440,8 @@ export function SettingsPanel({
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <div className="font-medium text-sm">Sombras</div>
-              <div className="text-muted-foreground text-xs">Proyectar sombras de las luces</div>
+              <div className="font-medium text-sm">{t('Shadows')}</div>
+              <div className="text-muted-foreground text-xs">{t('Cast shadows from lights')}</div>
             </div>
             <Switch
               checked={shadows}
@@ -456,10 +456,10 @@ export function SettingsPanel({
         <label className="font-medium text-muted-foreground text-xs uppercase">{t('Export')}</label>
 
         <div className="space-y-2">
-          <div className="font-medium text-muted-foreground text-xs">Modelo 3D</div>
+          <div className="font-medium text-muted-foreground text-xs">{t('3D Model')}</div>
           <div className="flex items-center justify-between gap-4 rounded-md border p-3">
             <div>
-              <div className="font-medium text-sm">Solo elementos visibles</div>
+              <div className="font-medium text-sm">{t('Visible items only')}</div>
               <div className="text-muted-foreground text-xs">
                 {t('Exclude hidden furniture and other hidden scene nodes')}
               </div>

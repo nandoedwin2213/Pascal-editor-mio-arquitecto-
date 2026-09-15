@@ -47,7 +47,7 @@ import { disposeSFXBus, initSFXBus } from '../../lib/sfx-bus'
 import { type CameraHintAction, useCameraHintFocus } from '../../store/use-camera-hint-focus'
 import useEditor from '../../store/use-editor'
 import useFloorplanMode from '../../store/use-floorplan-mode'
-import { useLanguage } from '../../store/use-language'
+import { useLanguageHydration } from '../../store/use-language'
 import useSessionGroups from '../../store/use-session-groups'
 import { CeilingSelectionAffordanceSystem } from '../systems/ceiling/ceiling-selection-affordance-system'
 import { CeilingSystem } from '../systems/ceiling/ceiling-system'
@@ -244,7 +244,7 @@ function EditorSceneCrashFallback() {
   return (
     <div className="fixed inset-0 z-80 flex items-center justify-center bg-background/95 p-4 text-foreground">
       <div className="w-full max-w-md rounded-2xl border border-border/60 bg-background p-6 shadow-xl">
-        <h2 className="font-semibold text-lg">No se pudo renderizar la escena del editor</h2>
+        <h2 className="font-semibold text-lg">{t('The editor scene failed to render')}</h2>
         <p className="mt-2 text-muted-foreground text-sm">
           {t('You can retry the scene or return home without reloading the whole app shell.')}
         </p>
@@ -1690,7 +1690,7 @@ function EditorContent({
 }
 
 export default function Editor(props: EditorProps) {
-  const language = useLanguage((state) => state.language)
+  const language = useLanguageHydration()
 
   return (
     <Profiler id="editor" onRender={recordEditorRender}>

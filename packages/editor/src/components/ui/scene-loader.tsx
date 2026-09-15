@@ -61,7 +61,7 @@ export function SceneLoadFailed({ className, onRetry }: SceneLoadFailedProps) {
       role="alert"
     >
       <div className="flex flex-col gap-1">
-        <p className="font-medium text-foreground text-sm">No se pudo cargar este proyecto</p>
+        <p className="font-medium text-foreground text-sm">{t('Could not load this project')}</p>
         <p className="text-muted-foreground text-sm">
           {t('Nothing was changed. Check your connection and try again.')}
         </p>

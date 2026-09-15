@@ -11219,7 +11219,7 @@ export function FloorplanPanel({
                 <Ruler className="h-4 w-4 text-foreground/80" />
               </div>
               <div className="min-w-0">
-                <div className="font-medium text-sm">Definir la escala de la imagen</div>
+                <div className="font-medium text-sm">{t('Set image scale')}</div>
                 <div className="mt-0.5 text-muted-foreground text-xs leading-4">
                   Enter the real-world length of the line you just drew. The image will resize to
                   match it.

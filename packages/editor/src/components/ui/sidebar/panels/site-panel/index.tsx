@@ -1446,7 +1446,7 @@ const ContentSection = memo(function ContentSection() {
 
   if (elementChildren.length === 0) {
     return (
-      <div className="px-3 py-4 text-muted-foreground text-sm">No hay elementos en este nivel</div>
+      <div className="px-3 py-4 text-muted-foreground text-sm">{t('No items on this level')}</div>
     )
   }
   return (

@@ -89,7 +89,7 @@ export function PluginsPanel() {
 
           <dl className="mt-6 divide-y divide-border/50 rounded-xl border border-border/60">
             <div className="p-3">
-              <dt className="text-sidebar-foreground/50 text-xs">ID del complemento</dt>
+              <dt className="text-sidebar-foreground/50 text-xs">{t('Plugin ID')}</dt>
               <dd className="mt-1 break-all text-sidebar-foreground text-sm">{pluginId}</dd>
             </div>
             {panel.creator && (

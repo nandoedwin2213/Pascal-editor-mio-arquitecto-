@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -10,6 +11,8 @@ interface LanguageState {
   setLanguage: (language: Language) => void
 }
 
+// The stored preference is applied after mount (see `useLanguageHydration`), so the
+// first client render matches the server-rendered Spanish default.
 export const useLanguage = create<LanguageState>()(
   persist(
     (set) => ({
@@ -18,6 +21,17 @@ export const useLanguage = create<LanguageState>()(
     }),
     {
       name: 'quinde-language',
+      skipHydration: true,
     },
   ),
 )
+
+export function useLanguageHydration(): Language {
+  const language = useLanguage((state) => state.language)
+
+  useEffect(() => {
+    void useLanguage.persist.rehydrate()
+  }, [])
+
+  return language
+}
