@@ -44,6 +44,27 @@ it when hosting Pascal at another origin:
 MINT_PASCAL_HOST_ORIGIN=https://pascal.example.com docker compose up -d
 ```
 
+### Behind a reverse proxy
+
+The scene API only accepts unauthenticated requests whose `Host` is a loopback
+name, so publish the container on `127.0.0.1:3000` and forward to it with the
+loopback `Host` preserved, then allow the public origin explicitly:
+
+```caddyfile
+:80 {
+	reverse_proxy 127.0.0.1:3000 {
+		header_up Host localhost:3000
+	}
+}
+```
+
+```bash
+PASCAL_SCENE_API_ORIGINS=https://pascal.example.com docker compose up -d
+```
+
+Set `PASCAL_SCENE_API_TOKEN` instead when the API should stay closed to
+browsers and only accept `Authorization: Bearer` clients.
+
 Keep the container port at 3000: the `/scenes` page fetches its own API through
 a base URL that only `NEXT_PUBLIC_APP_URL` can override, and Next inlines that
 value at build time, so remapping the port to something else makes the page
