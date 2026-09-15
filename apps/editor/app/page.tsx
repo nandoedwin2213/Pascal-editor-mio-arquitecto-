@@ -1,12 +1,7 @@
 import { Boxes, Building2, Layers3, Ruler, Sparkles, Sun } from 'lucide-react'
-import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BRAND } from '@/lib/brand'
-
-export const metadata: Metadata = {
-  title: `${BRAND.name} — ${BRAND.tagline}`,
-}
 
 const FEATURES = [
   {
