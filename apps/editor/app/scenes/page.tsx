@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { CreateSceneButton } from '@/components/save-button'
 import type { SceneMeta } from '@/components/scene-loader'
+import { SceneThumbnail } from '@/components/scene-thumbnail'
 import { BRAND } from '@/lib/brand'
 
 export const dynamic = 'force-dynamic'
@@ -97,16 +98,7 @@ export default async function ScenesPage() {
                   href={`/scene/${scene.id}`}
                 >
                   <div className="flex aspect-video items-center justify-center overflow-hidden rounded-lg bg-accent/30">
-                    {scene.thumbnailUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        alt={scene.name}
-                        className="h-full w-full object-cover"
-                        src={scene.thumbnailUrl}
-                      />
-                    ) : (
-                      <span className="text-muted-foreground text-xs">Sin miniatura</span>
-                    )}
+                    <SceneThumbnail name={scene.name} sceneId={scene.id} />
                   </div>
                   <div className="mt-3">
                     <h2 className="truncate font-semibold text-sm group-hover:text-foreground">

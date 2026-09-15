@@ -3,6 +3,12 @@ import { loadAssetUrl } from '@pascal-app/core'
 export const ASSETS_CDN_URL = process.env.NEXT_PUBLIC_ASSETS_CDN_URL || 'https://editor.pascal.app'
 
 /**
+ * Assets shipped inside the host app's `public/` directory. They are served
+ * same-origin, so they must bypass the CDN prefix that other relative paths get.
+ */
+const APP_ASSET_PREFIX = '/catalog/'
+
+/**
  * Resolves an asset URL to the appropriate format:
  * - If URL starts with http:// or https://, return as-is (external URL)
  * - If URL starts with asset://, resolve from IndexedDB storage
@@ -14,6 +20,10 @@ export async function resolveAssetUrl(url: string | undefined | null): Promise<s
 
   // External URL - use as-is
   if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+
+  if (url.startsWith(APP_ASSET_PREFIX)) {
     return url
   }
 
@@ -36,6 +46,10 @@ export function resolveCdnUrl(url: string | undefined | null): string | null {
 
   // External URL - use as-is
   if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+
+  if (url.startsWith(APP_ASSET_PREFIX)) {
     return url
   }
 
