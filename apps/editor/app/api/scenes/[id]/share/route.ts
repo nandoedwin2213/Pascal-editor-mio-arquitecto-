@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
+import { accessPassword } from '@/lib/access'
 import { getSceneOperations } from '@/lib/scene-store-server'
 import { sharePath, shareSecret, shareToken } from '@/lib/share'
 
@@ -6,10 +7,14 @@ export const dynamic = 'force-dynamic'
 
 type RouteParams = { params: Promise<{ id: string }> }
 
-/** Issues the public read-only link for a scene. Sits behind the access gate. */
-export async function GET(request: NextRequest, { params }: RouteParams) {
+/**
+ * Issues the public read-only link for a scene. Sits behind the access gate,
+ * so it refuses to mint links while the gate itself is not configured.
+ * Returns a path only; the browser prepends its own origin.
+ */
+export async function GET(_request: NextRequest, { params }: RouteParams) {
   const secret = shareSecret()
-  if (!secret) {
+  if (!(secret && accessPassword())) {
     return NextResponse.json({ error: 'sharing_disabled' }, { status: 503 })
   }
 
@@ -21,8 +26,5 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   }
 
   const token = await shareToken(secret, id)
-  const origin = request.headers.get('x-forwarded-host')
-    ? `${request.headers.get('x-forwarded-proto') ?? 'https'}://${request.headers.get('x-forwarded-host')}`
-    : request.nextUrl.origin
-  return NextResponse.json({ url: `${origin}${sharePath(id, token)}` })
+  return NextResponse.json({ path: sharePath(id, token) })
 }

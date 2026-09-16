@@ -17,13 +17,18 @@ export function ShareButton({ sceneId }: { sceneId: string }) {
   }, [])
 
   const share = useCallback(async () => {
+    if (resetTimer.current) {
+      clearTimeout(resetTimer.current)
+      resetTimer.current = null
+    }
     setState('loading')
     try {
       const response = await fetch(`/api/scenes/${encodeURIComponent(sceneId)}/share`)
       if (!response.ok) throw new Error(String(response.status))
-      const body = (await response.json()) as { url: string }
-      setUrl(body.url)
-      await navigator.clipboard.writeText(body.url)
+      const body = (await response.json()) as { path: string }
+      const shareUrl = `${window.location.origin}${body.path}`
+      setUrl(shareUrl)
+      await navigator.clipboard.writeText(shareUrl)
       setState('copied')
     } catch {
       setState('error')
@@ -52,7 +57,7 @@ export function ShareButton({ sceneId }: { sceneId: string }) {
         {state === 'copied' ? <Check className="h-3.5 w-3.5" /> : <Link2 className="h-3.5 w-3.5" />}
         {label}
       </button>
-      {url && state === 'copied' && (
+      {url && (state === 'copied' || state === 'error') && (
         <a
           className="max-w-xs truncate rounded bg-background/90 px-2 py-0.5 font-mono text-[10px] text-muted-foreground underline"
           href={url}
