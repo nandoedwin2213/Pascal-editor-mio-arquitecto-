@@ -22,6 +22,7 @@ import { useLiquidLineToolOptions } from '@pascal-app/nodes'
 import { useViewer } from '@pascal-app/viewer'
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { ToolHelpTip } from '@/components/tool-help-tip'
 import {
   Tooltip,
   TooltipContent,
@@ -384,7 +385,7 @@ export function BuildTab() {
                   </button>
                 </TooltipTrigger>
                 <TooltipContent className="pointer-events-none" side="top">
-                  {type.label}
+                  <ToolHelpTip fallback={type.label} id={type.id} />
                 </TooltipContent>
               </Tooltip>
             )
@@ -485,7 +486,7 @@ export function BuildTab() {
                           </button>
                         </TooltipTrigger>
                         <TooltipContent className="pointer-events-none" side="top">
-                          {feature.label}
+                          <ToolHelpTip fallback={feature.label} id={feature.kind ?? feature.id} />
                         </TooltipContent>
                       </Tooltip>
                     )

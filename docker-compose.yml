@@ -20,6 +20,9 @@ services:
       QUINDE_ACCESS_PASSWORD: ${QUINDE_ACCESS_PASSWORD:-}
       # Signs the public read-only share links (/compartir). Leave empty to disable sharing.
       QUINDE_SHARE_SECRET: ${QUINDE_SHARE_SECRET:-}
+      # Enables the in-editor design assistant. Leave empty to hide it.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      QUINDE_AI_MODEL: ${QUINDE_AI_MODEL:-}
     volumes:
       - pascal-data:/data
     restart: unless-stopped
