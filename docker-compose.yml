@@ -18,6 +18,8 @@ services:
       PASCAL_SCENE_API_ORIGINS: ${PASCAL_SCENE_API_ORIGINS:-}
       # Shared password required to open the app. Leave empty to keep it public.
       QUINDE_ACCESS_PASSWORD: ${QUINDE_ACCESS_PASSWORD:-}
+      # Signs the public read-only share links (/compartir). Leave empty to disable sharing.
+      QUINDE_SHARE_SECRET: ${QUINDE_SHARE_SECRET:-}
     volumes:
       - pascal-data:/data
     restart: unless-stopped

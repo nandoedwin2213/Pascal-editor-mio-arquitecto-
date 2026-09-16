@@ -1,8 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { ACCESS_COOKIE, accessPassword, accessToken, safeEqual } from '@/lib/access'
 
-/** Public surface: landing, sign-in, legal pages and health check. */
-const PUBLIC_PATHS = ['/acceso', '/api/access', '/api/health', '/terms', '/privacy']
+/** Public surface: landing, sign-in, legal pages, health check and signed client share links. */
+const PUBLIC_PATHS = ['/acceso', '/api/access', '/api/health', '/terms', '/privacy', '/compartir']
 
 /** Static files under `public/` (icons, catalog, fonts…) — also fetched internally by the image optimizer. */
 const STATIC_FILE = /\.[a-z0-9]+$/i
