@@ -130,10 +130,10 @@ export default async function ScenesPage() {
           <span className="rounded-md bg-white px-3 py-2">
             <Image
               alt={BRAND.company}
-              className="h-6 w-auto object-contain"
-              height={24}
+              className="h-8 w-auto object-contain"
+              height={188}
               src="/brand/berriot-corp.webp"
-              width={24}
+              width={447}
             />
           </span>
           <span className="text-muted-foreground text-xs uppercase tracking-widest">
