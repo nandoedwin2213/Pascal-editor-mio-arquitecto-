@@ -171,6 +171,9 @@ async function callAnthropic(
       'content-type': 'application/json',
       'x-api-key': apiKey,
       'anthropic-version': ANTHROPIC_VERSION,
+      ...(process.env.ANTHROPIC_WORKSPACE_ID
+        ? { 'anthropic-workspace-id': process.env.ANTHROPIC_WORKSPACE_ID }
+        : {}),
     },
     body: JSON.stringify({
       model: process.env.QUINDE_AI_MODEL || DEFAULT_MODEL,
