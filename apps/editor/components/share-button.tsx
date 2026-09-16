@@ -21,6 +21,7 @@ export function ShareButton({ sceneId }: { sceneId: string }) {
       clearTimeout(resetTimer.current)
       resetTimer.current = null
     }
+    setUrl(null)
     setState('loading')
     try {
       const response = await fetch(`/api/scenes/${encodeURIComponent(sceneId)}/share`)
