@@ -11,7 +11,7 @@ import {
   type SceneGraph,
   type SidebarTab,
 } from '@pascal-app/editor'
-import { Hammer, Layers, Package, Settings } from 'lucide-react'
+import { Hammer, Layers, Package, Settings, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -20,6 +20,7 @@ import { countGraphNodes, isEmptyGraphOverwrite } from '@/lib/empty-graph-guard'
 import { type PersistedSceneGraph, sceneGraphSignature } from '@/lib/scene-signature'
 import { cn } from '@/lib/utils'
 import { waitForItemModels } from '@/lib/wait-for-item-models'
+import { AssistantTab } from './assistant-tab'
 import { BuildTab } from './build-tab'
 import { ShareButton } from './share-button'
 import { CommunityViewerToolbarLeft, CommunityViewerToolbarRight } from './viewer-toolbar'
@@ -89,6 +90,14 @@ const SIDEBAR_TABS: (SidebarTab & { component: React.ComponentType })[] = [
         width={32}
       />
     ),
+  },
+  {
+    id: 'asistente',
+    label: 'Asistente',
+    component: AssistantTab,
+    mobileDefaultSnap: 0.6,
+    mobileIcon: <Sparkles className="h-5 w-5" />,
+    icon: <Sparkles className="h-6 w-6" />,
   },
   {
     id: 'settings',
