@@ -21,6 +21,7 @@ import { type PersistedSceneGraph, sceneGraphSignature } from '@/lib/scene-signa
 import { cn } from '@/lib/utils'
 import { waitForItemModels } from '@/lib/wait-for-item-models'
 import { BuildTab } from './build-tab'
+import { ShareButton } from './share-button'
 import { CommunityViewerToolbarLeft, CommunityViewerToolbarRight } from './viewer-toolbar'
 
 export interface SceneMeta {
@@ -326,6 +327,7 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
         >
           Light preview
         </button>
+        <ShareButton sceneId={meta.id} />
         <Link
           className="pointer-events-auto rounded-md border border-border bg-background/90 px-3 py-1.5 font-medium text-xs shadow-sm backdrop-blur hover:bg-accent/40"
           href="/scenes"
