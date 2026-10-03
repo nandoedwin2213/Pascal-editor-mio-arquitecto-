@@ -22,6 +22,7 @@ import { cn } from '@/lib/utils'
 import { waitForItemModels } from '@/lib/wait-for-item-models'
 import { AssistantTab } from './assistant-tab'
 import { BuildTab } from './build-tab'
+import { LogoutButton } from './logout-button'
 import { ShareButton } from './share-button'
 import { CommunityViewerToolbarLeft, CommunityViewerToolbarRight } from './viewer-toolbar'
 
@@ -343,6 +344,7 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
         >
           All scenes
         </Link>
+        <LogoutButton className="pointer-events-auto" />
       </div>
       <Editor
         disablePostFx={lightPreview}

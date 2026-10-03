@@ -1,8 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { ACCESS_COOKIE, accessPassword, accessToken, safeEqual } from '@/lib/access'
 
-const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 30
-
 export async function POST(request: NextRequest) {
   const password = accessPassword()
   if (!password) {
@@ -24,7 +22,6 @@ export async function POST(request: NextRequest) {
     sameSite: 'lax',
     secure: request.nextUrl.protocol === 'https:',
     path: '/',
-    maxAge: COOKIE_MAX_AGE_SECONDS,
   })
   return response
 }
