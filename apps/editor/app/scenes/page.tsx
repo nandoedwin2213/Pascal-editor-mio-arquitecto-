@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { headers } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
+import { LogoutButton } from '@/components/logout-button'
 import { CreateSceneButton } from '@/components/save-button'
 import type { SceneMeta } from '@/components/scene-loader'
 import { SceneThumbnail } from '@/components/scene-thumbnail'
@@ -75,7 +76,10 @@ export default async function ScenesPage() {
             <span className="text-muted-foreground">/</span>
             <span className="font-medium text-foreground">Escenas</span>
           </nav>
-          <CreateSceneButton label="Crear escena" />
+          <div className="flex items-center gap-2">
+            <CreateSceneButton label="Crear escena" />
+            <LogoutButton />
+          </div>
         </div>
       </header>
 
